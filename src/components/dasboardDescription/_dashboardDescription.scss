@@ -1,0 +1,90 @@
+.dashboard-description {
+  padding: 0px;
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  ul {
+    background-image: url(http://lefft.com/img/shelf_960.png);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+    width: 125%;
+    display: flex;
+    margin-bottom: 40px;
+    padding-left: 20px;
+    .progress {
+      height: 8px;
+      margin-bottom: 5px;
+    }
+  }
+  ul:first-child {
+    margin-top: 40%;
+  }
+
+  ul li {
+    position: relative;
+    list-style-type: none;
+    float: left;
+    margin-right: 1%;
+    bottom: 75px;
+    transition: all 0.2s ease;
+    position: relative;
+    align-self: center;
+    border-right: 3px solid #2c2c2b;
+    padding: 0 10px;
+    .images-logo {
+      width: 80px;
+    }
+  }
+  ul li:last-child {
+    border-right: none;
+  }
+}
+
+div.scrollmenu {
+  background-color: #fff;
+  overflow: auto;
+  white-space: nowrap;
+  margin-top: 75px;
+  display: inline-grid;
+  margin-bottom: 50px;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  color: #000;
+  text-align: center;
+  text-decoration: none;
+  padding: 1px 3px 0px 3px;
+  border-right: 4px solid #444;
+  border-left: 4px solid #444;
+  margin: 0 -2px;
+}
+
+div.scrollmenu a:first-child {
+  border-left: none;
+}
+div.scrollmenu a:last-child {
+  border-right: none;
+}
+div.scrollmenu a img {
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+
+  height: 90px;
+  // -moz-box-shadow: 3px 5px 5px #444;
+  // -webkit-box-shadow: 3px 5px 5px #444;
+  // box-shadow: 3px 5px 5px #444;
+  width: 100px;
+}
+.box-shadow {
+  border-bottom: 14px solid #444;
+  margin-bottom: 25px;
+}
+.box-shadow1 {
+  display: inline-block;
+}
+.progress {
+  height: 8px;
+  margin-bottom: 5px;
+}

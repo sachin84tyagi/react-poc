@@ -1,0 +1,52 @@
+html {
+  height: 100%;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font: 16px/1.4 Helvetica;
+}
+#root {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.dropdown-menu {
+  .fa-caret-up {
+    position: absolute;
+    font-size: 33px;
+    top: -23px;
+    right: 19px;
+    color: #d9d9d9;
+  }
+}
+.dropdown-item {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-bottom: 1px solid $gray-400;
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.form_container {
+  background: #fff;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #cccccc !important;
+  border-radius: 14px;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.validation-info {
+  font-size: small;
+  color: #e03737;
+  margin-top: 2%;
+  margin-bottom: 0%;
+}

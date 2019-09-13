@@ -1,0 +1,78 @@
+.dropdown-menu {
+  .fa-caret-up {
+    right: 14px;
+  }
+}
+
+.top-header {
+  height: 55px;
+  border-top: 1px solid #c4c8ca;
+  z-index: 1000;
+  position: fixed;
+  background: #e8f0f3;
+  width: 100%;
+  padding: 0 10px;
+  .fa-bell {
+    color: #fff;
+  }
+  .searchBox {
+    border-radius: 30px;
+    width: 250px;
+    height: auto;
+  }
+  .user-name {
+    line-height: 1;
+    p {
+      margin: 0;
+      font-size: 12px;
+    }
+    span {
+      font-size: 13px;
+      color: #b5b5b5;
+      float: right;
+      font-style: italic;
+    }
+  }
+  .far {
+    font-size: 24px;
+    position: relative;
+    top: 3px;
+  }
+  .badge {
+    position: absolute;
+    background: #f3300f;
+    border-radius: 100%;
+    top: 0px;
+    min-width: 14px;
+    text-align: center;
+    font-size: 10px;
+    line-height: 7px;
+    color: #e8f0f3;
+    right: -4px;
+    min-height: 14px;
+  }
+
+
+  .dropdown-toggle {
+    &::after {
+      content: none;
+    }
+  }
+  .image-dropdown-menu {
+    top: 12px !important;
+    // left: -100px !important;
+  }
+
+  @media (max-width: 768px) {
+    .image-dropdown-menu {
+      top: 12px !important;
+       left: 4px !important;
+      border-radius: 10px;
+    }
+  }
+  @media (max-width: 768px) {
+    .searchBox {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.video-container .video-js-dimensions {
+  width: none !important;
+  height: none !important;
+}
+
+#video-js {
+  width: 488px;
+}
+video.video-js {
+  width: 438px;
+}
+/* .vjs-control-bar {
+  display: none;
+} */

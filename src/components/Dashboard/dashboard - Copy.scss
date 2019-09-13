@@ -1,0 +1,53 @@
+.user-list {
+  color: #e6e4e4;
+  .car-list-header {
+    font-family: Roboto;
+    font-size: 22px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #e6e4e4;
+    padding: 29px 0 28px;
+  }
+
+  .user-list-table-container {
+    border-radius: 6px;
+    box-shadow: 0 2px 54px 0 rgba(0, 0, 0, 0.31);
+    background-color: #242939;
+    // color: #b7b7b7;
+    .user-list-table-result {
+      color: #b7b7b7;
+      padding: 42px 0;
+    }
+
+    .user-list-table {
+      padding-bottom: 20px;
+      .rt-resizable-header {
+        background-color: #242939;
+      }
+      .rt-thead.-header {
+        border: none;
+      }
+      .rt-thead .rt-tr{
+        border-top:none;
+        border-bottom: 1px solid #eef3ff;
+      }
+      .rt-tr-group {
+        border: none;
+        border-bottom: 1px solid #eef3ff;
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+      .rt-tbody .car-name {
+        color: #f2c419;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+

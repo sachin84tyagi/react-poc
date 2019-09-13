@@ -1,0 +1,21 @@
+@import "./assets/styles/variables"; // Use to replace variable of bootstrap library
+@import "~bootstrap/scss/bootstrap.scss";
+
+// Globally applied SCSS
+@import "./assets/styles/global";
+@import "./assets/styles/buttons";
+@import "./assets/styles/form";
+@import "./assets/styles//modal";
+
+// Component Based SCSS
+@import "./components/login/_loginPage";
+
+body {
+  background: #e8f0f3;
+  font-family: 'Roboto', sans-serif;
+}
+
+.notification {
+  margin-top: 75px;
+  text-align: center;
+}

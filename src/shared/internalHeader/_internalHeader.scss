@@ -1,0 +1,18 @@
+.internal-header {
+//   padding: 5%;
+  height: 30px;
+  background-color: black;
+  a {
+    // color: #ffffff80 !important;
+    display: inline-block;
+    margin: auto;
+    padding: 1% 0;
+    font-size: 20px;
+  }
+  fa {
+    color: #3131f3 !important;
+  }
+  .active {
+    color: #f6f6f6 !important;
+  }
+}

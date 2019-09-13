@@ -1,0 +1,57 @@
+.react-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.react-modal--in {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.react-modal__dialogue {
+  max-width: 600px;
+  width: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #ddd;
+  padding: 15px;
+  background-color: #fff;
+  box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  z-index: 10;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.react-modal__backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.react-modal__backdrop--in {
+  opacity: 0.5;
+  transition: opacity 0.5s;
+}
+.btn-close {
+  float: right;
+}
+.btn {
+  cursor: pointer;
+}

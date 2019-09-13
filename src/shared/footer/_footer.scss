@@ -1,0 +1,30 @@
+.footer-row {
+  // height: 7%;
+  background-color: #1c2224;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 3% 2%;
+  color: #FFF;
+  z-index: 9999;
+  .icon-row {
+    line-height: 1;
+    text-align: center;
+    .footer-icons {
+      color: #ffffff80;
+      width: 100%;
+    }
+    .active {
+      color: #ffffff !important;
+      text-decoration: none;
+    }
+    .footer-text {
+      font-size: 13px;
+      font-weight: normal;
+      letter-spacing: 0px;
+      color: #ffffff80;
+      font-family: sans-serif;
+    }
+  }
+}
