@@ -33,7 +33,7 @@ class NotificationData extends Component {
     };
 
     const response = await axios.post(
-      "https://vhlvztx86k.execute-api.us-east-1.amazonaws.com/prod/getvideostreambytimestamp",
+      "",
       {
         streamName: "RekognitionStream",
         startTime: "2019-09-12 18:15:50",
