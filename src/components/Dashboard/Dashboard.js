@@ -41,7 +41,7 @@ class Dashboard extends Component {
       }
     };
     const { data } = await axios.get(
-      "https://ubs2syt3te.execute-api.us-east-1.amazonaws.com/prod/getlivestream",
+      "",
       axiosConfig
     );
     console.log("Response Data ::::: ", data);
