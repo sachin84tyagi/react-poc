@@ -6,11 +6,11 @@ import ReactDOM from "react-dom";
 
 import { Provider } from "react-redux";
 import { initializeFirebase } from "./push-notification";
-import * as serviceWorker from "./serviceWorker";
+import serviceWorker from "./serviceWorker";
 
 import { App } from "./App";
 import store from "./helpers/store";
-import "font-awesome/css/font-awesome.css"
+import "font-awesome/css/font-awesome.css";
 
 const app = (
   <Provider store={store}>
@@ -23,4 +23,4 @@ ReactDOM.render(app, document.getElementById("root"));
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
 initializeFirebase();
-serviceWorker.unregister();
+serviceWorker();

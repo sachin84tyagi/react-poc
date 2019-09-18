@@ -13,6 +13,5 @@ const config = {
   appId: "1:384036126880:web:4543d4974a45cf0f6489c5"
 };
 firebase.initializeApp(config);
-//firebase.firestore().enablePersistence();
 
 export default firebase;

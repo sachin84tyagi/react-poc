@@ -32,17 +32,18 @@ class Dashboard extends Component {
   };
 
   async componentDidMount() {
-    // let axiosConfig = {
-    //   headers: {
-    //     "Content-Type":
-    //       "X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
-    //     "Access-Control-Allow-Origin": "*"
-    //   }
-    // };
-    // const { data } = await axios.get(
-    //   "https://ubs2syt3te.execute-api.us-east-1.amazonaws.com/prod/getlivestream",
-    //   axiosConfig
-    // );
+    let axiosConfig = {
+      headers: {
+        "Content-Type":
+          "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token", //
+        "Access-Control-Allow-Origin": "*"
+      }
+    };
+    const { data } = await axios.get(
+      "https://ubs2syt3te.execute-api.us-east-1.amazonaws.com/prod/getlivestream",
+      axiosConfig
+    );
+    console.log("Response Data ::::: ", data);
     //const { videoJsOptions } = { ...this.state };
     //const URL =
     //"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
@@ -73,18 +74,19 @@ class Dashboard extends Component {
     // });
 
     /////////////////
-
-    const videoJsOptions = {
-      autoplay: true,
-      controls: false,
-      sources: [
-        {
-          src: "",
-          type: "video/mp4"
-        }
-      ]
-    };
-    this.setState({ videoJsOptions });
+    if (data) {
+      const videoJsOptions = {
+        autoplay: true,
+        controls: false,
+        sources: [
+          {
+            src: data,
+            type: "video/mp4"
+          }
+        ]
+      };
+      this.setState({ videoJsOptions });
+    }
   }
 
   onOpenModal = id => {

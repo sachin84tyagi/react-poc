@@ -15,11 +15,18 @@ import Header from "./shared/header/header";
 
 import Footer from "./shared/footer/footer";
 
+import NotificationData from "./components/notificationData/notificationData";
+
+import Message from "./components/messages/messages";
+
 const Router = props => (
   <React.Fragment>
     <Switch>
       <Route exact path="/" component={LoginPage} />
       <Route exact path="/loginPage" component={LoginPage} />
+      <Route exact path="/notificationData" component={NotificationData} />
+      <Route exact path="/message" component={Message} />
+
       <PrivateRoute exact path="/logoutPage" component={Logout} />
       <PrivateRoute exact path="/dashboard" component={Dashboard} />
       <Route component={PageNotFound} />
