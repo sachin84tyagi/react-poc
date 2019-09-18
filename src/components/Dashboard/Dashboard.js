@@ -28,7 +28,8 @@ class Dashboard extends Component {
     isLogin: true,
     arrowClass: "fa fa-angle-down",
     video: [],
-    videoJsOptions: {}
+    videoJsOptions: {},
+    showSideBar: true
   };
 
   async componentDidMount() {
@@ -115,6 +116,12 @@ class Dashboard extends Component {
     });
   };
 
+  onClickFn = (data) => {
+    console.log('data', data)
+    this.setState({
+      showSideBar: data
+    })
+  }
   render() {
     const { open, video, videoJsOptions } = this.state;
     console.log("Video :::::>>>>> ", video);
@@ -137,14 +144,14 @@ class Dashboard extends Component {
       calculateDiv = 2;
     }
     console.log("State Visibility :::::::::::: ", this.state.visible);
-
+    
     return (
       <React.Fragment>
         <div className="car-management">
-          <Header isAuthorized={this.state.isLogin} />
+          <Header isAuthorized={this.state.isLogin} onClickFn={this.onClickFn} />
         </div>
         <div className="wrapper" style={{ marginTop: "56px" }}>
-          {this.state.visible ? <Sidebar /> : ""}
+          {this.state.showSideBar ? <Sidebar /> : ""}
 
           <div id="content">
             <div
@@ -167,16 +174,6 @@ class Dashboard extends Component {
                   }}
                 >
                   <div className="car-list-header col-md-12">
-                    <nav className="navbar navbar-expand-lg navbar-light navbarAdditionClass">
-                      <button
-                        type="button"
-                        id="sidebarCollapse"
-                        className="btn btn-warning btn-bg"
-                        onClick={this.toggleMenu}
-                      >
-                        <i className="fas fa-align-left"></i>
-                      </button>
-                    </nav>
                     Video Information List
                   </div>
                 </div>
