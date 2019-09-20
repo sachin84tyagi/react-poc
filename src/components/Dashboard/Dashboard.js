@@ -37,12 +37,11 @@ class Dashboard extends Component {
     let axiosConfig = {
       headers: {
         "Content-Type":
-          "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token", //
-        "Access-Control-Allow-Origin": "*"
+          "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token"
       }
     };
     const { data } = await axios.get(
-      "",
+      "https://ubs2syt3te.execute-api.us-east-1.amazonaws.com/prod/getlivestream",
       axiosConfig
     );
     console.log("Response Data ::::: ", data);
@@ -82,8 +81,7 @@ class Dashboard extends Component {
         controls: false,
         sources: [
           {
-            src: data,
-            type: "video/mp4"
+            src: data
           }
         ]
       };
@@ -116,7 +114,6 @@ class Dashboard extends Component {
       visible: !this.state.visible
     });
   };
-
   onClickFn = (data) => {
     console.log('data', data)
     this.setState({
@@ -145,14 +142,14 @@ class Dashboard extends Component {
       calculateDiv = 2;
     }
     console.log("State Visibility :::::::::::: ", this.state.visible);
-    
+
     return (
       <React.Fragment>
         <div className="car-management">
           <Header isAuthorized={this.state.isLogin} onClickFn={this.onClickFn} />
         </div>
         <div className="wrapper" style={{ marginTop: "56px" }}>
-          {this.state.showSideBar ? <Sidebar sideBarStatus = {this.state.showSideBar} /> : <SidebarCollpase></SidebarCollpase>}
+          {this.state.showSideBar ? <Sidebar sideBarStatus={this.state.showSideBar} /> : <SidebarCollpase></SidebarCollpase>}
 
           <div id="content">
             <div
@@ -210,7 +207,7 @@ class Dashboard extends Component {
                           backgroundColor: "#000"
                         }}
                       >
-                        {/* <VideoPlayer {...videoJsOptions} /> */}
+                        <VideoPlayer {...videoJsOptions} />
                       </div>
 
                       <div

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./_sidebar.scss";
 
 const Sidebar = props => {
@@ -12,6 +13,24 @@ const Sidebar = props => {
       <br />
 
       <ul className="list-unstyled components">
+        <li>
+          <Link to="/dashboard">
+            <i className="fas fa-image"></i>
+            Dashboard
+          </Link>
+        </li>
+        <li>
+          <Link to="/dashboard">
+            <i className="fas fa-image"></i>
+            Live Stream
+          </Link>
+        </li>
+        <li>
+          <Link to="/notificationData">
+            <i className="fas fa-image"></i>
+            Notification Messages
+          </Link>
+        </li>
         <li className="active">
           <a
             href="#homeSubmenu"

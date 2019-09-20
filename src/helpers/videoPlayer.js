@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import videojs from "video.js";
 import "./videoPlayer.css";
+import "video.js/dist/video-js.css";
 //
 class VideoPlayer extends Component {
   //   constructor(props) {

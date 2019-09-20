@@ -6,7 +6,8 @@ import Header from "../../shared/header/header";
 import Sidebar from "../../shared/sidebar/sidebar";
 import "./notificationData.scss";
 
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, Link } from "react-router-dom";
+
 import axios from "axios";
 
 class NotificationData extends Component {
@@ -22,28 +23,27 @@ class NotificationData extends Component {
     });
   };
 
-  playMethod = async stream => {
-    let axiosConfig = {
-      headers: {
-        "Content-Type":
-          "X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
-        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        "Access-Control-Allow-Origin": "*"
-      }
-    };
+  // playMethod = async stream => {
+  //   let axiosConfig = {
+  //     headers: {
+  //       "Content-Type":
+  //         "X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
+  //       "Access-Control-Allow-Origin": "*"
+  //     }
+  //   };
 
-    const response = await axios.post(
-      "",
-      {
-        streamName: "RekognitionStream",
-        startTime: "2019-09-12 18:15:50",
-        endTime: "2019-09-12 18:15:56"
-      },
-      axiosConfig
-    );
-    console.log("PLAY Method", stream);
-    console.log("Response ::>>> ", response);
-  };
+  //   const response = await axios.post(
+  //     "https://vhlvztx86k.execute-api.us-east-1.amazonaws.com/prod/getvideostreambytimestamp",
+  //     {
+  //       streamName: "RekognitionStream",
+  //       startTime: "2019-09-12 18:15:50",
+  //       endTime: "2019-09-12 18:15:56"
+  //     },
+  //     axiosConfig
+  //   );
+  //   console.log("PLAY Method", stream);
+  //   console.log("Response ::>>> ", response);
+  // };
 
   redirectToMethod = () => {
     // <Route
@@ -61,7 +61,7 @@ class NotificationData extends Component {
     super(props);
     const dataArr = [];
 
-    messaging.onMessage(async function(payload) {
+    messaging.onMessage(async function (payload) {
       const { data } = await payload;
       dataArr.push(data);
 
@@ -69,8 +69,8 @@ class NotificationData extends Component {
     });
   }
 
-  async componentDidMount() {
-    const messages = JSON.parse(localStorage.getItem("payload"));
+  async componentWillMount() {
+    const messages = await JSON.parse(localStorage.getItem("payload"));
     this.setState({ messages });
   }
 
@@ -133,14 +133,14 @@ class NotificationData extends Component {
                             <td>{message.ExternalImageId}</td>
                             <td>{message.ServerTimestamp}</td>
                             <td>{message.StreamArn}</td>
+                            {/* <td>{`/notificationDetails/${message.ExternalImageId}/${message.ServerTimestamp}`}</td> */}
                             <td>
-                              <button
-                                onClick={() =>
-                                  this.playMethod(message.StreamArn)
-                                }
+                              <Link
+                                className="btn btn-warning btn-sm"
+                                to={`/notificationDetails/${message.ExternalImageId}/${message.ServerTimestamp}`}
                               >
                                 Play
-                              </button>
+                              </Link>
                             </td>
                           </tr>
                         ))}
