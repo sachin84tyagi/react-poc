@@ -6,6 +6,7 @@ import "./dashboard.scss";
 
 import Header from "../../shared/header/header";
 import Sidebar from "../../shared/sidebar/sidebar";
+import SidebarCollpase from "../../shared/sidebar/sideBarCollapse";
 
 //import ReactPlayer from "react-player";
 import Modal from "react-responsive-modal";
@@ -151,7 +152,7 @@ class Dashboard extends Component {
           <Header isAuthorized={this.state.isLogin} onClickFn={this.onClickFn} />
         </div>
         <div className="wrapper" style={{ marginTop: "56px" }}>
-          {this.state.showSideBar ? <Sidebar /> : ""}
+          {this.state.showSideBar ? <Sidebar sideBarStatus = {this.state.showSideBar} /> : <SidebarCollpase></SidebarCollpase>}
 
           <div id="content">
             <div

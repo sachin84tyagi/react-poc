@@ -67,6 +67,30 @@ span {
   transition: all 0.3s;
 }
 
+#sidebarAtCollapse {
+  min-width: 50px;
+  max-width: 250px;
+  background: #2e353d; //735a00 2e353d
+  color: #fff;
+  transition: all 0.3s;
+}
+
+#sidebarAtCollapse ul li {
+  justify-content: center;
+    display: flex;
+    height: 40px;
+    border-bottom: 1px solid #000000;
+}
+
+#sidebarAtCollapse ul li a {
+  margin-top: 15%;
+}
+
+#sidebarAtCollapse ul li a i {
+  font-size: 24px;
+    color: white;
+}
+
 #sidebar.active {
   min-width: 80px;
   max-width: 80px;
@@ -258,7 +282,7 @@ a.article:hover {
   #sidebar {
     margin-left: 0;
   }
-  #sidebarCollapse span {
+  #sidebarAtCollapse span {
     display: none;
   }
 }

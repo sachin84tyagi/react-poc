@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./_sidebar.scss";
 
 const Sidebar = props => {
+  console.log("props in side bar", props)
   return (
     <nav id="sidebar">
       {/* <div className="sidebar-header">

@@ -42,7 +42,6 @@ class Header extends Component {
     this.setState({
       visible: !this.state.visible
     });
-    console.log("props in header", this.props)
     this.props.onClickFn(this.state.visible);
   }
 
