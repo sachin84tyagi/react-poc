@@ -26,7 +26,7 @@ class NotificationDetails extends Component {
     super(props);
     const dataArr = [];
 
-    messaging.onMessage(async function(payload) {
+    messaging.onMessage(async function (payload) {
       const { data } = await payload;
       dataArr.push(data);
 
@@ -56,17 +56,18 @@ class NotificationDetails extends Component {
         streamName: "RekognitionStream",
         startTime: this.props.match.params.timeStamp,
         endTime: this.props.match.params.timeStamp,
-        imageName: "naveen.png"
+        imageName: this.props.match.params.image
       },
       axiosConfig
     );
+    console.log("Response from API ::: ", data)
     if (data) {
       const videoJsOptions = {
         autoplay: true,
         controls: false,
         sources: [
           {
-            src: data
+            src: JSON.parse(data).VideoURL
           }
         ]
       };
@@ -76,7 +77,7 @@ class NotificationDetails extends Component {
     }
   }
 
-  
+
   onClickFn = (data) => {
     console.log('data', data)
     this.setState({
@@ -95,7 +96,7 @@ class NotificationDetails extends Component {
           <Header isAuthorized={this.state.isLogin} onClickFn={this.onClickFn} />
         </div>
         <div className="wrapper" style={{ marginTop: "56px" }}>
-        {this.state.showSideBar ? <Sidebar sideBarStatus={this.state.showSideBar} /> : <SidebarCollpase></SidebarCollpase>}
+          {this.state.showSideBar ? <Sidebar sideBarStatus={this.state.showSideBar} /> : <SidebarCollpase></SidebarCollpase>}
 
           <div id="content">
             <div
@@ -160,7 +161,7 @@ class NotificationDetails extends Component {
                       </thead> */}
                       <tbody>
                         <tr>
-                          <th scope="row" className= "table-entity">Image</th>
+                          <th scope="row" className="table-entity">Image</th>
                           <td>
                             <img
                               src={this.state.tableData.ImageURL}
@@ -170,11 +171,11 @@ class NotificationDetails extends Component {
                           </td>
                         </tr>
                         <tr>
-                          <th scope="row" className= "table-entity">Video URL</th>
+                          <th scope="row" className="table-entity">Video URL</th>
                           <td>{this.state.tableData.VideoURL}</td>
                         </tr>
                         <tr>
-                          <th scope="row" className= "table-entity">Camera Name</th>
+                          <th scope="row" className="table-entity">Camera Name</th>
                           <td>RekognitionStream</td>
                         </tr>
                       </tbody>
