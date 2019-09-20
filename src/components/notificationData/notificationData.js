@@ -128,7 +128,7 @@ class NotificationData extends Component {
                         </tr>
                       </thead>
                       <tbody>
-                        {messages != null ? messages.map((message, key) => (
+                        {messages && messages.map((message, key) => (
                           <tr key={key}>
                             <th scope="row">{key + 1}</th>
                             <td>{message.ExternalImageId}</td>
@@ -144,7 +144,7 @@ class NotificationData extends Component {
                               </Link>
                             </td>
                           </tr>
-                        )): ''}
+                        ))}
                       </tbody>
                     </table>
                   </div>
