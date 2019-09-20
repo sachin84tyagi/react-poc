@@ -109,17 +109,13 @@ class Dashboard extends Component {
     }
   };
 
-  toggleMenu = () => {
-    this.setState({
-      visible: !this.state.visible
-    });
-  };
   onClickFn = (data) => {
     console.log('data', data)
     this.setState({
       showSideBar: data
     })
   }
+
   render() {
     const { open, video, videoJsOptions } = this.state;
     console.log("Video :::::>>>>> ", video);

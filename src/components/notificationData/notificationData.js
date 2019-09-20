@@ -6,6 +6,8 @@ import Header from "../../shared/header/header";
 import Sidebar from "../../shared/sidebar/sidebar";
 import "./notificationData.scss";
 
+import SidebarCollpase from "../../shared/sidebar/sideBarCollapse";
+
 import { Route, Redirect, Link } from "react-router-dom";
 
 import axios from "axios";
@@ -14,7 +16,8 @@ class NotificationData extends Component {
   state = {
     visible: true,
     redirect: true,
-    messages: []
+    messages: [],
+    showSideBar: true
   };
 
   toggleMenu = () => {
@@ -57,6 +60,14 @@ class NotificationData extends Component {
     }
   };
 
+  
+  onClickFn = (data) => {
+    console.log('data', data)
+    this.setState({
+      showSideBar: data
+    })
+  }
+
   constructor(props) {
     super(props);
     const dataArr = [];
@@ -80,10 +91,10 @@ class NotificationData extends Component {
     return (
       <React.Fragment>
         <div className="car-management">
-          <Header isAuthorized={this.state.isLogin} />
+          <Header isAuthorized={this.state.isLogin} onClickFn={this.onClickFn}/>
         </div>
         <div className="wrapper" style={{ marginTop: "56px" }}>
-          {this.state.visible ? <Sidebar /> : ""}
+        {this.state.showSideBar ? <Sidebar sideBarStatus={this.state.showSideBar} /> : <SidebarCollpase></SidebarCollpase>}
 
           <div id="content">
             <div
@@ -106,16 +117,6 @@ class NotificationData extends Component {
                   }}
                 >
                   <div className="car-list-header col-md-12">
-                    <nav className="navbar navbar-expand-lg navbar-light navbarAdditionClass">
-                      <button
-                        type="button"
-                        id="sidebarCollapse"
-                        className="btn btn-warning btn-bg"
-                        onClick={this.toggleMenu}
-                      >
-                        <i className="fas fa-align-left"></i>
-                      </button>
-                    </nav>
                     Messages List
                     <table className="table table-dark table-striped">
                       <thead>
@@ -127,7 +128,7 @@ class NotificationData extends Component {
                         </tr>
                       </thead>
                       <tbody>
-                        {messages.map((message, key) => (
+                        {messages != null ? messages.map((message, key) => (
                           <tr key={key}>
                             <th scope="row">{key + 1}</th>
                             <td>{message.ExternalImageId}</td>
@@ -143,7 +144,7 @@ class NotificationData extends Component {
                               </Link>
                             </td>
                           </tr>
-                        ))}
+                        )): ''}
                       </tbody>
                     </table>
                   </div>
