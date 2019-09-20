@@ -10,19 +10,17 @@ import { Route, Redirect } from "react-router-dom";
 import axios from "axios";
 import VideoPlayer from "../../helpers/videoPlayer";
 
+import SidebarCollpase from "../../shared/sidebar/sideBarCollapse";
+
 class NotificationDetails extends Component {
   state = {
-    visible: true,
     redirect: true,
     data: [],
-    videoJsOptions: {}
+    videoJsOptions: {},
+    tableData: {},
+    showSideBar: true
   };
 
-  toggleMenu = () => {
-    this.setState({
-      visible: !this.state.visible
-    });
-  };
 
   constructor(props) {
     super(props);
@@ -36,7 +34,7 @@ class NotificationDetails extends Component {
     });
   }
 
-  async componentDidMount() {
+  async componentWillMount() {
     console.log("CDM PARAMS image ", this.props.match.params.image);
     console.log("CDM PARAMS timeStamp ", this.props.match.params.timeStamp);
     // console.log(
@@ -57,11 +55,11 @@ class NotificationDetails extends Component {
       {
         streamName: "RekognitionStream",
         startTime: this.props.match.params.timeStamp,
-        endTime: this.props.match.params.timeStamp
+        endTime: this.props.match.params.timeStamp,
+        imageName: "naveen.png"
       },
       axiosConfig
     );
-    console.log("data in notification details", data);
     if (data) {
       const videoJsOptions = {
         autoplay: true,
@@ -72,8 +70,18 @@ class NotificationDetails extends Component {
           }
         ]
       };
+
       this.setState({ videoJsOptions });
+      this.setState({ tableData: JSON.parse(data) });
     }
+  }
+
+  
+  onClickFn = (data) => {
+    console.log('data', data)
+    this.setState({
+      showSideBar: data
+    })
   }
 
   componentWillUnmount() {
@@ -81,16 +89,13 @@ class NotificationDetails extends Component {
   }
   render() {
     const { videoJsOptions } = this.state;
-
-    console.log("videoJsOptions :::::>>>>> ", videoJsOptions);
-
     return (
       <React.Fragment>
         <div className="car-management">
-          <Header isAuthorized={this.state.isLogin} />
+          <Header isAuthorized={this.state.isLogin} onClickFn={this.onClickFn} />
         </div>
         <div className="wrapper" style={{ marginTop: "56px" }}>
-          {this.state.visible ? <Sidebar /> : ""}
+        {this.state.showSideBar ? <Sidebar sideBarStatus={this.state.showSideBar} /> : <SidebarCollpase></SidebarCollpase>}
 
           <div id="content">
             <div
@@ -113,16 +118,6 @@ class NotificationDetails extends Component {
                   }}
                 >
                   <div className="car-list-header col-md-12">
-                    <nav className="navbar navbar-expand-lg navbar-light navbarAdditionClass">
-                      <button
-                        type="button"
-                        id="sidebarCollapse"
-                        className="btn btn-warning btn-bg"
-                        onClick={this.toggleMenu}
-                      >
-                        <i className="fas fa-align-left"></i>
-                      </button>
-                    </nav>
                     Messages Details
                     <div className="row mt-3">
                       <div className={`col-lg-12 text-center`}>
@@ -151,6 +146,39 @@ class NotificationDetails extends Component {
                         </div>
                       </div>
                     </div>
+                  </div>
+
+                  <div className="col-md-12">
+                    <table className="table table-dark table-striped">
+                      {/* <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">First</th>
+                          <th scope="col">Last</th>
+                          <th scope="col">Handle</th>
+                        </tr>
+                      </thead> */}
+                      <tbody>
+                        <tr>
+                          <th scope="row" className= "table-entity">Image</th>
+                          <td>
+                            <img
+                              src={this.state.tableData.ImageURL}
+                              height="50px"
+                              alt="image"
+                            ></img>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row" className= "table-entity">Video URL</th>
+                          <td>{this.state.tableData.VideoURL}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row" className= "table-entity">Camera Name</th>
+                          <td>RekognitionStream</td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>

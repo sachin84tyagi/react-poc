@@ -14,17 +14,11 @@ import axios from "axios";
 
 class NotificationData extends Component {
   state = {
-    visible: true,
     redirect: true,
     messages: [],
     showSideBar: true
   };
 
-  toggleMenu = () => {
-    this.setState({
-      visible: !this.state.visible
-    });
-  };
 
   // playMethod = async stream => {
   //   let axiosConfig = {
