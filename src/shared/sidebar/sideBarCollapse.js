@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./_sidebar.scss";
 
 const SidebarCollpase = props => {
@@ -7,6 +8,21 @@ const SidebarCollpase = props => {
       <br />
 
       <ul className="list-unstyled components">
+        <li>
+          <Link to="/dashboard">
+            <i className="fas fa-image"></i>
+          </Link>
+        </li>
+        <li>
+          <Link to="/dashboard">
+            <i className="fas fa-image"></i>
+          </Link>
+        </li>
+        <li>
+          <Link to="/notificationData">
+            <i className="fas fa-image"></i>
+          </Link>
+        </li>
         <li className="active">
           <a aria-expanded="false">
             <i className="fas fa-home"></i>
