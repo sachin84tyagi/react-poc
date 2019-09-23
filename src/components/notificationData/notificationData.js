@@ -87,20 +87,19 @@ class NotificationData extends Component {
         <div className="car-management">
           <Header isAuthorized={this.state.isLogin} onClickFn={this.onClickFn}/>
         </div>
-        <div className="wrapper" style={{ marginTop: "56px" }}>
+        <div className="wrapper" style={{ marginTop: "56px", backgroundColor: "#232838" }}>
         {this.state.showSideBar ? <Sidebar sideBarStatus={this.state.showSideBar} /> : <SidebarCollpase></SidebarCollpase>}
 
           <div id="content">
             <div
               className="social-box"
               style={{
-                background: "#232838",
                 paddingBottom: "200px",
                 paddingLeft: "18px",
                 paddingRight: "12px"
               }}
             >
-              <div className="container" style={{ backgroundColor: "#232838" }}>
+              <div className="container">
                 <div
                   className="user-list row"
                   style={{

@@ -1,5 +1,6 @@
 .user-list {
   color: #d19b3d;
+
   .car-list-header {
     font-family: Roboto;
     font-size: 22px;
@@ -16,6 +17,7 @@
     border-radius: 6px;
     box-shadow: 0 2px 54px 0 rgba(0, 0, 0, 0.31);
     background-color: #242939;
+
     // color: #b7b7b7;
     .user-list-table-result {
       color: #b7b7b7;
@@ -24,25 +26,32 @@
 
     .user-list-table {
       padding-bottom: 20px;
+
       .rt-resizable-header {
         background-color: #242939;
       }
+
       .rt-thead.-header {
         border: none;
       }
+
       .rt-thead .rt-tr {
         border-top: none;
         border-bottom: 1px solid #eef3ff;
       }
+
       .rt-tr-group {
         border: none;
         border-bottom: 1px solid #eef3ff;
+
         &:last-child {
           border-bottom: none;
         }
       }
+
       .rt-tbody .car-name {
         color: #f2c419;
+
         &:hover {
           text-decoration: none;
         }
@@ -50,10 +59,16 @@
     }
   }
 }
+
+.video-player {
+  margin: 5% 25%;
+}
+
 .btn-bg {
   background: #e0a800; //e0a800 d19b3d
   border: none;
 }
+
 .navbarAdditionClass {
   background: none !important;
   box-shadow: none !important;
