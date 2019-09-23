@@ -1,10 +1,15 @@
 table {
   font-size: 12px;
   margin-top: 20px;
-  
-.table-entity {
-  vertical-align: inherit;
-  width: 25%;
+
+  .table-entity {
+    vertical-align: inherit;
+    width: 25%;
+    color: #d19b3d;
+    font-weight: bold;
+  }
 }
 
+.detailed-table {
+  font-size: 14x;
 }

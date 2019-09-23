@@ -21,12 +21,11 @@ class NotificationDetails extends Component {
     showSideBar: true
   };
 
-
   constructor(props) {
     super(props);
     const dataArr = [];
 
-    messaging.onMessage(async function (payload) {
+    messaging.onMessage(async function(payload) {
       const { data } = await payload;
       dataArr.push(data);
 
@@ -60,7 +59,7 @@ class NotificationDetails extends Component {
       },
       axiosConfig
     );
-    console.log("Response from API ::: ", data)
+    console.log("Response from API ::: ", data);
     if (data) {
       const videoJsOptions = {
         autoplay: true,
@@ -77,13 +76,12 @@ class NotificationDetails extends Component {
     }
   }
 
-
-  onClickFn = (data) => {
-    console.log('data', data)
+  onClickFn = data => {
+    console.log("data", data);
     this.setState({
       showSideBar: data
-    })
-  }
+    });
+  };
 
   componentWillUnmount() {
     const data = null;
@@ -93,33 +91,40 @@ class NotificationDetails extends Component {
     return (
       <React.Fragment>
         <div className="car-management">
-          <Header isAuthorized={this.state.isLogin} onClickFn={this.onClickFn} />
+          <Header
+            isAuthorized={this.state.isLogin}
+            onClickFn={this.onClickFn}
+          />
         </div>
-        <div className="wrapper" style={{ marginTop: "56px", backgroundColor: "#232838" }}>
-        {this.state.showSideBar ? <Sidebar sideBarStatus={this.state.showSideBar} /> : <SidebarCollpase></SidebarCollpase>}
+        <div
+          className="wrapper"
+          style={{ marginTop: "56px", backgroundColor: "#232838" }}
+        >
+          {this.state.showSideBar ? (
+            <Sidebar sideBarStatus={this.state.showSideBar} />
+          ) : (
+            <SidebarCollpase></SidebarCollpase>
+          )}
 
           <div id="content">
             <div
               className="social-box"
               style={{
-                paddingBottom: "200px",
                 paddingLeft: "18px",
                 paddingRight: "12px"
               }}
             >
               <div className="container">
                 <div
-                  className="user-list row"
+                  className="user-list"
                   style={{
                     borderBottom: "0px solid #FFF",
-                    paddingBottom: "0px",
-                    marginBottom: "0px",
-                    marginLeft: "0px"
+                    marginTop: "3%"
                   }}
                 >
-                  <div className="car-list-header col-md-12">
+                  <div className="car-list-header">
                     Messages Details
-                    <div className="row mt-3">
+                    <div className="row mt-4">
                       <div className={`col-lg-12 text-center`}>
                         <div
                           style={{
@@ -131,7 +136,7 @@ class NotificationDetails extends Component {
                           <hr />
                         </div>
 
-                        <div
+                        {/* <div
                           style={{
                             color: "#d19b3d",
                             fontSize: "13px",
@@ -143,13 +148,13 @@ class NotificationDetails extends Component {
                           {
                             //videoData.name
                           }
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
 
-                  <div className="col-md-12">
-                    <table className="table table-dark table-striped">
+                  <div>
+                    <table className="table table-dark table-striped detailed-table">
                       {/* <thead>
                         <tr>
                           <th scope="col">#</th>
@@ -160,21 +165,27 @@ class NotificationDetails extends Component {
                       </thead> */}
                       <tbody>
                         <tr>
-                          <th scope="row" className="table-entity">Image</th>
+                          <th scope="row" className="table-entity">
+                            Image
+                          </th>
                           <td>
                             <img
                               src={this.state.tableData.ImageURL}
-                              height="50px"
+                              height="75px"
                               alt="image"
                             ></img>
                           </td>
                         </tr>
                         <tr>
-                          <th scope="row" className="table-entity">Video URL</th>
+                          <th scope="row" className="table-entity">
+                            Video URL
+                          </th>
                           <td>{this.state.tableData.VideoURL}</td>
                         </tr>
                         <tr>
-                          <th scope="row" className="table-entity">Camera Name</th>
+                          <th scope="row" className="table-entity">
+                            Camera Name
+                          </th>
                           <td>RekognitionStream</td>
                         </tr>
                       </tbody>

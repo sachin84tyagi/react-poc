@@ -104,9 +104,7 @@ class NotificationData extends Component {
                   className="user-list row"
                   style={{
                     borderBottom: "0px solid #FFF",
-                    paddingBottom: "0px",
-                    marginBottom: "0px",
-                    marginLeft: "0px"
+                    marginTop: "3%"
                   }}
                 >
                   <div className="car-list-header col-md-12">
