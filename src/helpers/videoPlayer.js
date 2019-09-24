@@ -9,13 +9,7 @@ class VideoPlayer extends Component {
   //     this.videoHTML = this.videoHTML.bind(this);
   //   }
   // state = {}
-  styleDiv = {
-    //border: "2px solid red"
-  };
 
-  styleDivVideo = {
-    //border: "2px solid blue"
-  };
   componentDidMount() {
     // instantiate Video.js
     console.log("video props", this.props);
@@ -34,7 +28,7 @@ class VideoPlayer extends Component {
   }
 
   componentWillReceiveProps(previosprops, nextprops) {
-    //console.log("video props comp",previosprops,nextprops);
+    console.log("video props comp", previosprops, nextprops);
     if (this.player) {
       this.player.dispose();
     }

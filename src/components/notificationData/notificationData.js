@@ -66,10 +66,23 @@ class NotificationData extends Component {
     super(props);
     const dataArr = [];
 
-    messaging.onMessage(async function(payload) {
+    messaging.onMessage(async function (payload) {
       const { data } = await payload;
-      dataArr.push(data);
-      localStorage.setItem("payload", JSON.stringify(dataArr));
+
+      if (data.EventOn && data.EventOn != "") {
+        const jsonArr = [];
+        //console.log("Event On")
+        jsonArr.push(data)
+        localStorage.setItem("payload", JSON.stringify(jsonArr));
+      } else {
+        //console.log("Push Data")
+        dataArr.push(data);
+        localStorage.setItem("payload", JSON.stringify(dataArr));
+      }
+
+
+
+
     });
   }
 
@@ -83,11 +96,11 @@ class NotificationData extends Component {
     const { messages } = this.state;
 
     return messages[0] && messages[0].EventOn == "S3Video" ? (
-      
+
       <WeaponDetection messages={this.state.messages}></WeaponDetection>
     ) : (
-      <FaceDetection messages={this.state.messages}></FaceDetection>
-    );
+        <FaceDetection messages={this.state.messages}></FaceDetection>
+      );
   }
 }
 

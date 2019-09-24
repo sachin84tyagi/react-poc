@@ -28,29 +28,42 @@ class WeaponDetection extends Component {
     // console.log("in face detection component", this.props.messages);
   }
 
-  componentWillMount() {
+  componentDidMount() {
+
+
+    const videoJsOptions = {
+      autoplay: true,
+      controls: false,
+      sources: [
+        {
+          src: this.props.messages[0].VideoURL
+        }
+      ]
+    };
+
     this.setState({
-      messages: this.props.messages
+      videoJsOptions
     });
-    
-    // console.log("in the weapon detection video", this.props.messages)
-    
+    console.log("in the weapon detection video componentDidMount ", this.props.messages)
+
   }
 
   render() {
-    console.log("in the weapon detection video", this.props.messages[0].VideoURL)
+    console.log("in the weapon detection video", this.props.messages[0].VideoURL);
 
-    const videoJsOptions = {
-        autoplay: true,
-        controls: true,
-        sources: [
-          {
-            src: this.props.messages[0].VideoURL
-          }
-        ]
-      };
+    const { videoJsOptions } = this.state;
 
-    
+    // const videoJsOptions = {
+    //   autoplay: true,
+    //   controls: false,
+    //   sources: [
+    //     {
+    //       src: this.props.messages[0].VideoURL
+    //     }
+    //   ]
+    // };
+
+
     return (
       <React.Fragment>
         <div className="car-management">
@@ -66,8 +79,8 @@ class WeaponDetection extends Component {
           {this.state.showSideBar ? (
             <Sidebar sideBarStatus={this.state.showSideBar} />
           ) : (
-            <SidebarCollpase></SidebarCollpase>
-          )}
+              <SidebarCollpase></SidebarCollpase>
+            )}
           <div id="content">
             <div
               className="social-box"
@@ -113,13 +126,13 @@ class WeaponDetection extends Component {
                         </tr>
                       </thead>
                       <tbody>
-                            <tr>
-                            <th scope="row">1</th>
-                            <td>{this.props.messages[0].Bucket}</td>
-                            <td>{this.props.messages[0].Video}</td>
-                            <td>{this.props.messages[0].Label}</td>
-                            <td>{this.props.messages[0].CreatedOn}</td>
-                            {/* <td>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>{this.props.messages[0].Bucket}</td>
+                          <td>{this.props.messages[0].Video}</td>
+                          <td>{this.props.messages[0].Label}</td>
+                          <td>{this.props.messages[0].CreatedOn}</td>
+                          {/* <td>
                               <Link
                                 className="btn btn-warning btn-sm"
                                 to={`/weaponDetectionDetails//${this.props.messages[0].VideoURL}`}
@@ -127,7 +140,7 @@ class WeaponDetection extends Component {
                                 Play
                               </Link>
                             </td> */}
-                          </tr>
+                        </tr>
                       </tbody>
                     </table>
                   </div>
