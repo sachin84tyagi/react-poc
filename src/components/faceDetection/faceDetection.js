@@ -26,14 +26,13 @@ class FaceDetection extends Component {
     // console.log("in face detection component", this.props.messages);
   }
 
-   
-
   render() {
-    console.log("in face detection render", this.props.messages)
+    console.log("in face detection render", this.props.messages);
     return (
       <React.Fragment>
         <div className="car-management">
           <Header
+            displaySideBar={true}
             isAuthorized={this.state.isLogin}
             onClickFn={this.onClickFn}
           />

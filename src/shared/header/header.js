@@ -38,25 +38,29 @@ class Header extends Component {
     }
   }
   onMenuClick = () => {
-
     this.setState({
       visible: !this.state.visible
     });
     this.props.onClickFn(this.state.visible);
-  }
+  };
 
   render() {
+    console.log("in header props", this.props);
     return (
       <header className="align-items-center top-header d-flex justify-content-between">
         {/* <nav className="navbar navbar-expand-lg navbar-light navbarAdditionClass"> */}
-          <button
-            type="button"
-            id="sidebarCollapse"
-            className="btn btn-warning btn-bg"
-            onClick={this.onMenuClick}
-          >
-            <i className="fas fa-align-left"></i>
-          </button>
+        {this.props.displaySideBar ? 
+        <button
+          type="button"
+          id="sidebarCollapse"
+          className={
+            "btn btn-warning btn-bg "
+            
+          }
+          onClick={this.onMenuClick}
+        >
+          <i className="fas fa-align-left"></i>
+        </button>: ''}
         {/* </nav> */}
         <a href="#">
           <img

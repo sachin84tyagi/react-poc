@@ -15,95 +15,114 @@ $loginRed: #ff4444;
   }
 }
 
-.login-main {
-//   position: absolute;
-margin-top: 100px;
-  width: 100%;
-  top: 15%;
-  .car-image {
-    margin: auto;
-    padding-left: 40px;
-    @media screen and (max-width: 992px) {
-      display: none;
+.login-bg {
+  margin-top: 56px;
+  height: 601px;
+  background-color: #232838;
+  .login-main {
+    //   position: absolute;
+    margin-top: 100px;
+    width: 100%;
+    top: 15%;
+    .login-tag-line {
+      color: #ffffff;
+      padding: 12% 0;
+      font-family: sans-serif;
     }
-  }
-
-  .login-form {
-    padding: 25px;
-    margin: auto;
-    .login-inner-header {
-      margin-bottom: 10%;
-      h2 {
-        @extend .login-form-fonts;
-        font-weight: bold;
-        letter-spacing: -0.8px;
-        color: #4e4b4b;
-      }
-    }
-    .Dont-have-an-accoun {
-      @extend .login-form-fonts;
-      font-weight: normal;
-      letter-spacing: 0px;
-      color: #939292;
-      @extend .font-small-devices;
-      .login-form-inner-links {
-        color: #e40110;
-        text-decoration: none;
-        margin-left: 2%;
-      }
-    }
-    .form-group {
-      margin-bottom: 6%;
-      label {
-        color: #4e5d78;
-        margin-bottom: 0.2rem !important;
-      }
-      input {
-        border-radius: 4px;
-        font-family: InterUI;
-        background-color: #f8f8f8;
-        margin-bottom: 0.2rem !important;
-      }
-    }
-    .field-icon {
-      float: right;
-      margin-right: 20px;
-      margin-top: -30px;
-      position: relative;
-      z-index: 2;
-    }
-    .logged-In {
-      input {
-        border-radius: 3px;
-        background-color: #fbfbfb;
-        margin-right: 1%;
-      }
-      .keep-log {
-        letter-spacing: -0.8px;
-        color: $colorBlack;
-        @extend .font-small-devices;
+    .car-image {
+      margin: auto;
+      padding-left: 40px;
+      @media screen and (max-width: 992px) {
+        display: none;
       }
     }
 
-    .login-button {
-      button {
-        margin-top: 7%;
-        background-color: $loginRed;
-        border: $loginRed 7px;
+    .login-form {
+      padding: 25px;
+      margin: auto;
+      .login-inner-header {
+        margin-bottom: 4%;
+        h2 {
+          @extend .login-form-fonts;
+          font-weight: bold;
+          letter-spacing: -0.8px;
+          color: #4e4b4b;
+        }
       }
-      .Sign-in {
+      .dont-have-an-account {
         @extend .login-form-fonts;
         font-weight: normal;
-        letter-spacing: -0.8px;
-        color: $colorWhite;
+        letter-spacing: 0px;
+        color: #939292;
+        margin-bottom: 2%;
+        @extend .font-small-devices;
+        .login-form-inner-links {
+          color: #e40110;
+          text-decoration: none;
+          margin-left: 2%;
+        }
+        .sign-up {
+          color: #e40110;
+          font-size: 13px;
+          text-decoration: none;
+          letter-spacing: -0.5px;
+          margin: auto;
+
+        }
       }
-    }
-    .login-form-forget-links {
-      color: #e40110;
-      font-size: 13px;
-      text-decoration: none;
-      letter-spacing: -0.5px;
-      margin: auto;
+      .form-group {
+        margin-bottom: 4%;
+        label {
+          color: #4e5d78;
+          margin-bottom: 0.2rem !important;
+        }
+        input {
+          border-radius: 4px;
+          font-family: InterUI;
+          background-color: #f8f8f8;
+          margin-bottom: 0.2rem !important;
+        }
+      }
+      .field-icon {
+        float: right;
+        margin-right: 20px;
+        margin-top: -30px;
+        position: relative;
+        z-index: 2;
+      }
+      .logged-In {
+        input {
+          border-radius: 3px;
+          background-color: #fbfbfb;
+          margin-right: 1%;
+        }
+        .keep-log {
+          letter-spacing: -0.8px;
+          color: $colorBlack;
+          @extend .font-small-devices;
+        }
+      }
+
+      .login-button {
+        button {
+          margin-top: 7%;
+          background-color: $loginRed;
+          border: $loginRed 7px;
+        }
+        .Sign-in {
+          @extend .login-form-fonts;
+          font-weight: normal;
+          letter-spacing: -0.8px;
+          color: $colorWhite;
+        }
+      }
+      .login-form-forget-links {
+        color: #e40110;
+        font-size: 13px;
+        text-decoration: none;
+        letter-spacing: -0.5px;
+        margin: auto;
+      }
     }
   }
 }

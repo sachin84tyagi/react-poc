@@ -28,9 +28,12 @@ class Messages extends Component {
     return (
       <React.Fragment>
         <div className="car-management">
-          <Header isAuthorized={this.state.isLogin} />
+          <Header displaySideBar={true} isAuthorized={this.state.isLogin} />
         </div>
-        <div className="wrapper" style={{ marginTop: "56px", backgroundColor: "#232838" }}>
+        <div
+          className="wrapper"
+          style={{ marginTop: "56px", backgroundColor: "#232838" }}
+        >
           {this.state.visible ? <Sidebar /> : ""}
 
           <div id="content">

@@ -92,6 +92,7 @@ class NotificationDetails extends Component {
       <React.Fragment>
         <div className="car-management">
           <Header
+            displaySideBar={true}
             isAuthorized={this.state.isLogin}
             onClickFn={this.onClickFn}
           />

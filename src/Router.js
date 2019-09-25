@@ -10,10 +10,7 @@ import { PageNotFound } from "./shared/error/PageNotFound";
 import Logout from "./components/logout/logoutPage";
 
 import Dashboard from "./components/Dashboard/Dashboard";
-
-import Header from "./shared/header/header";
-
-import Footer from "./shared/footer/footer";
+import SignUp from "./components/signUp/signUp"
 
 import NotificationData from "./components/notificationData/notificationData";
 import NotificationDetails from "./components/notificationDetails/notificationDetails";
@@ -32,6 +29,7 @@ const Router = props => (
         component={NotificationDetails}
       />
       <Route exact path="/message" component={Message} />
+      <Route exact path = "/signUp" component = {SignUp} />
 
       <PrivateRoute exact path="/logoutPage" component={Logout} />
       <PrivateRoute exact path="/dashboard" component={Dashboard} />

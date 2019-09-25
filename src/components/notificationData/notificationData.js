@@ -71,11 +71,11 @@ class NotificationData extends Component {
 
       if (data.EventOn && data.EventOn != "") {
         const jsonArr = [];
-        //console.log("Event On")
+        console.log("Event On")
         jsonArr.push(data)
         localStorage.setItem("payload", JSON.stringify(jsonArr));
       } else {
-        //console.log("Push Data")
+        console.log("Push Data")
         dataArr.push(data);
         localStorage.setItem("payload", JSON.stringify(dataArr));
       }

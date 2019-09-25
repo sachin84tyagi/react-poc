@@ -29,8 +29,6 @@ class WeaponDetection extends Component {
   }
 
   componentDidMount() {
-
-
     const videoJsOptions = {
       autoplay: true,
       controls: false,
@@ -44,12 +42,17 @@ class WeaponDetection extends Component {
     this.setState({
       videoJsOptions
     });
-    console.log("in the weapon detection video componentDidMount ", this.props.messages)
-
+    console.log(
+      "in the weapon detection video componentDidMount ",
+      this.props.messages
+    );
   }
 
   render() {
-    console.log("in the weapon detection video", this.props.messages[0].VideoURL);
+    console.log(
+      "in the weapon detection video",
+      this.props.messages[0].VideoURL
+    );
 
     const { videoJsOptions } = this.state;
 
@@ -63,11 +66,11 @@ class WeaponDetection extends Component {
     //   ]
     // };
 
-
     return (
       <React.Fragment>
         <div className="car-management">
           <Header
+            displaySideBar={true}
             isAuthorized={this.state.isLogin}
             onClickFn={this.onClickFn}
           />
@@ -79,8 +82,8 @@ class WeaponDetection extends Component {
           {this.state.showSideBar ? (
             <Sidebar sideBarStatus={this.state.showSideBar} />
           ) : (
-              <SidebarCollpase></SidebarCollpase>
-            )}
+            <SidebarCollpase></SidebarCollpase>
+          )}
           <div id="content">
             <div
               className="social-box"
@@ -100,7 +103,6 @@ class WeaponDetection extends Component {
                 >
                   <div className="car-list-header col-md-12">
                     Weapon Detection List
-
                     <div className="row mt-4">
                       <div className={`col-lg-12 text-center`}>
                         <div
@@ -114,7 +116,6 @@ class WeaponDetection extends Component {
                         </div>
                       </div>
                     </div>
-
                     <table className="table table-dark table-striped">
                       <thead>
                         <tr>
