@@ -17,8 +17,11 @@ $loginRed: #ff4444;
 
 .login-bg {
   margin-top: 56px;
-  height: 601px;
-  background-color: #232838;
+  min-height: 601px;
+  // background-color: #232838;
+  background-image: url("../../assets/images/background-ott.png");
+  background-repeat: no-repeat;
+  background-size: cover;
   .login-main {
     //   position: absolute;
     margin-top: 100px;
@@ -71,7 +74,6 @@ $loginRed: #ff4444;
           text-decoration: none;
           letter-spacing: -0.5px;
           margin: auto;
-
         }
       }
       .form-group {

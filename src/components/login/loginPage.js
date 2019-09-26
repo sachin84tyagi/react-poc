@@ -72,7 +72,6 @@ class LoginPage extends Component {
             <div className="row login-main">
               <div className="col-lg-3" />
               <div className="col-lg-5 login-tag-line">
-                {/* <img className="hcl-logo" src={hclLogo} alt="HCL Login" /> */}
                 <h2>TRUSTED MOBILITY PLATFORM AND SERVICES</h2>
                 
               </div>
