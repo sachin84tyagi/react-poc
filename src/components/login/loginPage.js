@@ -43,8 +43,9 @@ class LoginPage extends Component {
     this.setState({ submitted: true });
     if (this.loginForm.value) {
       //const loggendInStatus = await authService.login(this.loginForm.value);
+      console.log("ysuahzijLK")
       var loggendInStatus = await this.props.userLogin(
-        this.loginForm.value.username,
+        this.loginForm.value.userName,
         this.loginForm.value.password
       );
       console.log("loggendInStatus ::::::: >>>>>>>>>", loggendInStatus);
@@ -58,7 +59,7 @@ class LoginPage extends Component {
   };
 
   loginForm = FormBuilder.group({
-    username: ["", [Validators.required]],
+    userName: ["", [Validators.required]],
     password: ["", [Validators.required, Validators.minLength(8)]]
   });
 
@@ -90,7 +91,7 @@ class LoginPage extends Component {
                     render={({ invalid }) => (
                       <form onSubmit={e => this.handleSubmit(e)}>
                         <FieldControl
-                          name="username"
+                          name="userName"
                           options={{ validators: Validators.required }}
                           render={({ handler, touched, hasError }) => (
                             <div

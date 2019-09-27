@@ -10,14 +10,36 @@ import { NavLink } from "react-router-dom";
 
 import Header from "../../shared/header/header";
 import "./_signUp.scss";
+import { authService } from "../../services/authService";
+
+import { history } from "../../helpers/history";
 
 class SignUp extends Component {
   signUpForm = FormBuilder.group({
-    fName: ["", [Validators.required]],
-    lName: ["", [Validators.required]]
+    firstName: ["", [Validators.required]],
+    lastName: ["", [Validators.required]],
+    userContactDTO: FormBuilder.group({
+      email: ["", [Validators.required, Validators.email]],
+      phoneNo: ["", [Validators.required]]
+    }),
+    createdByUserId: Math.floor(Math.random() * 100000000),
+    employeeId: Math.floor(Math.random() * 100000000),
+    modifiedByUserId: Math.floor(Math.random() * 100000000),
+    organization: "csgcghcs",
+    userId: Math.floor(Math.random() * 100000000)
   });
 
-  handleSubmitSignUp = async e => {};
+  handleSubmitSignUp = async e => {
+    e.preventDefault();
+    console.log("in the sign up form", this.signUpForm.value);
+    if (this.signUpForm.value) {
+      var authStatus = await authService.signUp(this.signUpForm.value)
+      console.log("auth status in component", authStatus)
+      if(authStatus.status === 201) {
+        history.push("/")
+      }
+    }
+  };
 
   render() {
     return (
@@ -44,7 +66,7 @@ class SignUp extends Component {
                       <form onSubmit={e => this.handleSubmitSignUp(e)}>
                         <div className="row d-flex">
                           <FieldControl
-                            name="fName"
+                            name="firstName"
                             options={{ validators: Validators.required }}
                             render={({ handler, touched, hasError }) => (
                               <div className="form-group signup-name">
@@ -52,7 +74,7 @@ class SignUp extends Component {
                                 <input
                                   type="text"
                                   className="form-control form-input"
-                                  id="fName"
+                                  id="firstName"
                                   aria-describedby="First Name"
                                   placeholder="First Name..."
                                   {...handler()}
@@ -61,7 +83,7 @@ class SignUp extends Component {
                             )}
                           />
                           <FieldControl
-                            name="lName"
+                            name="lastName"
                             options={{ validators: Validators.required }}
                             render={({ handler, touched, hasError }) => (
                               <div className="form-group signup-name">
@@ -69,7 +91,7 @@ class SignUp extends Component {
                                 <input
                                   type="text"
                                   className="form-control form-input"
-                                  id="lName"
+                                  id="lastName"
                                   aria-describedby="Last Name"
                                   placeholder="Last Name..."
                                   {...handler()}
@@ -80,7 +102,7 @@ class SignUp extends Component {
                         </div>
                         <div className="row">
                           <FieldControl
-                            name="email"
+                            name="userContactDTO.email"
                             options={{ validators: Validators.required }}
                             render={({ handler, touched, hasError }) => (
                               <div className="form-group signup-fields">
@@ -99,7 +121,7 @@ class SignUp extends Component {
                         </div>
                         <div className="row">
                           <FieldControl
-                            name="phNumber"
+                            name="userContactDTO.phoneNo"
                             options={{ validators: Validators.required }}
                             render={({ handler, touched, hasError }) => (
                               <div className="form-group signup-fields">
@@ -109,7 +131,7 @@ class SignUp extends Component {
                                 <input
                                   type="text"
                                   className="form-control form-input"
-                                  id="phNumber"
+                                  id="phoneNo"
                                   aria-describedby="Phone Number"
                                   placeholder="phone number"
                                   {...handler()}

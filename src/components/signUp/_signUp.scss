@@ -49,6 +49,7 @@ $loginRed: #ff4444;
       padding: 0 4%;
       .form-input {
         background-color: transparent;
+        color: #fff;
       }
       ::placeholder {
         color: #fff;
@@ -60,11 +61,13 @@ $loginRed: #ff4444;
       }
     }
 
+
     .signup-fields {
       padding: 0 4%;
       width: 100%;
       .form-input {
         background-color: transparent;
+        color: #fff;
       }
       ::placeholder {
         color: #fff;

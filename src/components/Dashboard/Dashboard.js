@@ -118,7 +118,6 @@ class Dashboard extends Component {
 
   render() {
     const { open, video, videoJsOptions } = this.state;
-    console.log("Video :::::>>>>> ", video);
     console.log("videoJsOptions :::::>>>>> ", videoJsOptions.sources);
     // const videoJsOptions = {
     //   autoplay: true,
@@ -183,32 +182,9 @@ class Dashboard extends Component {
                 </div>
                 <div className="row">
                   {
-                    //this.state.video &&
-                    //this.state.video.map(videoData => (
                     <div
                       className={`col-lg-${calculateDiv} text-center video-player`}
                     >
-                      {/* <div
-                        onClick={() => this.onOpenModal(videoData.id)}
-                        style={{
-                          marginBottom: "20px",
-                          backgroundColor: "#000",
-                          cursor: "pointer"
-                        }}
-                      >
-                        <div
-                          className="box"
-                          style={{
-                            boxShadow: "0 0 5px #DAA520",
-                            backgroundColor: "#000"
-                          }}
-                        >
-                          <i
-                            class="fa fa-play-circle"
-                            style={{ fontSize: "62px", lineHeight: "160px" }}
-                          ></i>
-                        </div>
-                      </div> */}
                       <div
                         style={{
                           boxShadow: "0 0 5px #DAA520",
@@ -226,20 +202,8 @@ class Dashboard extends Component {
                           marginTop: "20px"
                         }}
                       >
-                        {
-                          //videoData.name
-                        }
                       </div>
-                      {/* <Modal
-                        open={open[videoData.id]}
-                        onClose={this.onCloseModal}
-                        center
-                      >
-                        <h6>Video Play Information #{videoData.id}</h6>
-                        <ReactPlayer url={videoData.url} playing />
-                      </Modal> */}
                     </div>
-                    //))
                   }
                 </div>
               </div>

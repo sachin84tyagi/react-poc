@@ -5,17 +5,17 @@ import { askForPermissioToReceiveNotifications } from "../push-notification";
 export const authService = {
   login: (username, password) => {
     //var loginObj = { username: username, password: password, rememberMe: true };
-    var loginObj = { username: "test", password: "test" };
+    var loginObj = { userName: username, password: password };
+    console.log("in the login service", loginObj)
     let axiosConfig = {
       headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*"
+        "Content-Type": "application/json"
       }
     };
     //const proxyurl = "https://cors-anywhere.herokuapp.com/";
     return axios
       .post(
-        "http://www.mocky.io/v2/5d70deeb3300001221779525",
+        "http://ec2-54-172-220-197.compute-1.amazonaws.com:8080/usermgmt/users/login",
         loginObj,
         axiosConfig
       )
@@ -43,6 +43,28 @@ export const authService = {
         return false;
       });
   },
+
+  signUp: (user) =>{
+    console.log("xvschxcxjcjh", user)
+    let axiosConfig = {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+    return axios
+      .post(
+        "http://ec2-54-172-220-197.compute-1.amazonaws.com:8080/usermgmt/users",
+        user,
+        axiosConfig
+      ).then(response => {
+        console.log("in signup auth service", response)
+        return response
+      })
+      .catch(err => {
+        console.log("in the error signup auth service", err)
+      })
+  },
+
   logout: () => {
     localStorage.removeItem("user");
     localStorage.removeItem("user-login-jwt");
