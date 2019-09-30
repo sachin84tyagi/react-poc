@@ -11,22 +11,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     history.listen((location, action) => {
-      console.log("APP JS ", location);
-      console.log("PREPARING REDIRECT TO " + location.pathname);
-      console.log(action, location.pathname, location.state);
       this.props.clearAlerts();
     });
   }
 
   render() {
-    const { alert } = this.props;
     return (
       <React.Fragment>
-        {alert.message && (
-          <div className={`alert notification ${alert.type}`}>
-            {alert.message}
-          </div>
-        )}
         <Router history={history}>
           <Route />
         </Router>
@@ -38,6 +29,7 @@ class App extends Component {
 //export default App;
 
 function mapStateToProps(state) {
+  // console.log("ddsgschghx>>>>>>>>>", state)
   const { alert } = state;
   return {
     alert

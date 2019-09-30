@@ -42,8 +42,6 @@ class LoginPage extends Component {
     e.preventDefault();
     this.setState({ submitted: true });
     if (this.loginForm.value) {
-      //const loggendInStatus = await authService.login(this.loginForm.value);
-      console.log("ysuahzijLK")
       var loggendInStatus = await this.props.userLogin(
         this.loginForm.value.userName,
         this.loginForm.value.password
@@ -52,7 +50,6 @@ class LoginPage extends Component {
       if (loggendInStatus === true) {
         this.props.history.push("/dashboard");
       } else {
-        //dispatch(alertActions.error("Invalid login details."));
         this.props.history.push("/");
       }
     }
@@ -64,17 +61,21 @@ class LoginPage extends Component {
   });
 
   render() {
-    //console.log("this.state.type", this.state.type);
+    const  loginStatus  = Object.assign({}, this.props.userLoginStatus)
     return (
       <React.Fragment>
-        <Header displaySideBar = {false}></Header>
+        <Header displaySideBar={false}></Header>
         <div className="login-bg ">
+          {loginStatus && loginStatus.message && (
+            <div className={`alert notification ${loginStatus.type}`}>
+              {loginStatus.message}
+            </div>
+          )}
           <div className="container">
             <div className="row login-main">
               <div className="col-lg-3" />
               <div className="col-lg-5 login-tag-line">
                 <h2>TRUSTED MOBILITY PLATFORM AND SERVICES</h2>
-                
               </div>
 
               <div className="form_container login-form col-lg-4 col-sm-8 col-10">
@@ -83,7 +84,9 @@ class LoginPage extends Component {
                 </div>
                 <div className="dont-have-an-account">
                   <span>Don't have an account? </span> &nbsp;
-                  <NavLink to = '/signUp' className = "sign-up">Sign Up</NavLink>
+                  <NavLink to="/signUp" className="sign-up">
+                    Sign Up
+                  </NavLink>
                 </div>
                 <div>
                   <FieldGroup
@@ -194,10 +197,11 @@ class LoginPage extends Component {
 }
 
 function mapStateToProps(state) {
-  // console.log("in the login page", state);
   const { loggingIn } = state.authentication;
   return {
-    loggingIn
+    loggingIn,
+    userLoginStatus: state.alert
+
   };
 }
 

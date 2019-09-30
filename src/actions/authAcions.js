@@ -10,7 +10,6 @@ export const userAuthActions = {
 
 function login(username, password) {
   return dispatch => {
-    console.log("AUTH ACTION IS CALLED..............");
     authService.login(username, password).then(
       user => {
         if (user) {
