@@ -52,13 +52,13 @@ class Dashboard extends Component {
 
   render() {
     const { open } = this.state;
-    console.log("open open Value::::::::  >>>> ", open);
-    console.log("Video Length :::::::: >>>> ", this.state.video.length);
+    // console.log("open open Value::::::::  >>>> ", open);
+    // console.log("Video Length :::::::: >>>> ", this.state.video.length);
     let calculateDiv = Math.ceil(12 / this.state.video.length);
     // if (calculateDiv >= 12) {
     //   calculateDiv = 3;
     // }
-    console.log("calculateDiv >>>>> ", calculateDiv)
+    // console.log("calculateDiv >>>>> ", calculateDiv)
     return (
       <React.Fragment>
 

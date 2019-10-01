@@ -4,10 +4,14 @@
 }
 
 #video-js {
-  width: 488px;
+  /* width: 488px; */
 }
 video.video-js {
   width: 438px;
+}
+
+.video-js {
+  width : 100% !important;
 }
 /* .vjs-control-bar {
   display: none;

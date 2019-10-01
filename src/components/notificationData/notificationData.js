@@ -39,8 +39,8 @@ class NotificationData extends Component {
   //     },
   //     axiosConfig
   //   );
-  //   console.log("PLAY Method", stream);
-  //   console.log("Response ::>>> ", response);
+  //   // console.log("PLAY Method", stream);
+  //   // console.log("Response ::>>> ", response);
   // };
 
   redirectToMethod = () => {
@@ -56,7 +56,7 @@ class NotificationData extends Component {
   };
 
   onClickFn = data => {
-    console.log("data", data);
+    // console.log("data", data);
     this.setState({
       showSideBar: data
     });
@@ -71,11 +71,11 @@ class NotificationData extends Component {
 
       if (data.EventOn && data.EventOn != "") {
         const jsonArr = [];
-        console.log("Event On")
+        // console.log("Event On")
         jsonArr.push(data)
         localStorage.setItem("payload", JSON.stringify(jsonArr));
       } else {
-        console.log("Push Data")
+        // console.log("Push Data")
         dataArr.push(data);
         localStorage.setItem("payload", JSON.stringify(dataArr));
       }
@@ -88,7 +88,7 @@ class NotificationData extends Component {
 
   async componentWillMount() {
     const messages = await JSON.parse(localStorage.getItem("payload"));
-    console.log("in the notification data", messages);
+    // console.log("in the notification data", messages);
     this.setState({ messages });
   }
 

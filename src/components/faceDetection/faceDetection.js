@@ -15,7 +15,7 @@ class FaceDetection extends Component {
   };
 
   onClickFn = data => {
-    console.log("data", data);
+    // console.log("data", data);
     this.setState({
       showSideBar: data
     });
@@ -23,11 +23,11 @@ class FaceDetection extends Component {
 
   constructor(props) {
     super(props);
-    // console.log("in face detection component", this.props.messages);
+    // // console.log("in face detection component", this.props.messages);
   }
 
   render() {
-    console.log("in face detection render", this.props.messages);
+    // console.log("in face detection render", this.props.messages);
     return (
       <React.Fragment>
         <div className="car-management">

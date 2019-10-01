@@ -34,7 +34,7 @@ class LoginPage extends Component {
     };
 
     // reset login status
-    // console.log("props in login", this.props);
+    // // console.log("props in login", this.props);
     // this.props.dispatch(userAuthActions.logout());
   }
 
@@ -46,7 +46,7 @@ class LoginPage extends Component {
         this.loginForm.value.userName,
         this.loginForm.value.password
       );
-      console.log("loggendInStatus ::::::: >>>>>>>>>", loggendInStatus);
+      // console.log("loggendInStatus ::::::: >>>>>>>>>", loggendInStatus);
       if (loggendInStatus === true) {
         this.props.history.push("/dashboard");
       } else {

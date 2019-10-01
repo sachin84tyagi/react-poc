@@ -45,7 +45,7 @@ class Header extends Component {
   };
 
   render() {
-    console.log("in header props", this.props);
+    // console.log("in header props", this.props);
     return (
       <header className="align-items-center top-header d-flex justify-content-between">
         {/* <nav className="navbar navbar-expand-lg navbar-light navbarAdditionClass"> */}
@@ -77,7 +77,7 @@ class Header extends Component {
 }
 
 // function mapStateToProps(state) {
-//   console.log("state in header", state)
+//   // console.log("state in header", state)
 //   return {
 //     sideBarStatus: state.sideBarStatusReducer
 

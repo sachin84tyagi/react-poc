@@ -6,7 +6,7 @@ export const authService = {
   login: (username, password) => {
     //var loginObj = { username: username, password: password, rememberMe: true };
     var loginObj = { userName: username, password: password };
-    console.log("in the login service", loginObj)
+    // console.log("in the login service", loginObj)
     let axiosConfig = {
       headers: {
         "Content-Type": "application/json"
@@ -30,7 +30,7 @@ export const authService = {
           var userData = {
             name: "Sachin Tyagi"
           };
-          console.log("userData >>>>>>>>>> ", userData);
+          // console.log("userData >>>>>>>>>> ", userData);
           delete userData.password;
           userData = Object.assign(userData, loggedInObj);
 
@@ -45,7 +45,7 @@ export const authService = {
   },
 
   signUp: (user) =>{
-    console.log("xvschxcxjcjh", user)
+    // console.log("xvschxcxjcjh", user)
     let axiosConfig = {
       headers: {
         "Content-Type": "application/json"
@@ -57,11 +57,11 @@ export const authService = {
         user,
         axiosConfig
       ).then(response => {
-        console.log("in signup auth service", response)
+        // console.log("in signup auth service", response)
         return response
       })
       .catch(err => {
-        console.log("in the error signup auth service", err)
+        // console.log("in the error signup auth service", err)
       })
   },
 

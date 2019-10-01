@@ -35,7 +35,7 @@ class Footer extends Component {
     this.setState({ selectedTab: data.name });
   }
   render() {
-    console.log("in the footer", this.props.isAuthorized);
+    // console.log("in the footer", this.props.isAuthorized);
     return this.props.isAuthorized ? (
       <footer className="footer-row d-flex footer-row-inner justify-content-between ">
         {this.footerJSON.map((data, index) => {

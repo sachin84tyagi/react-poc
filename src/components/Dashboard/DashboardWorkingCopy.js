@@ -119,7 +119,7 @@ class Dashboard extends Component {
     if (calculateDiv <= 2) {
       calculateDiv = 2;
     }
-    console.log("State Visibility :::::::::::: ", this.state.visible);
+    // console.log("State Visibility :::::::::::: ", this.state.visible);
 
     return (
       <React.Fragment>

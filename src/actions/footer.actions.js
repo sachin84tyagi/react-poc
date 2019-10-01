@@ -5,6 +5,6 @@ export const footerActions = {
 };
 
 function getFooterParam(param) {
-    // console.log("in the footer action", param)
+    // // console.log("in the footer action", param)
     return { type: footerConstants.FOOTER_REQUEST, param };
 }

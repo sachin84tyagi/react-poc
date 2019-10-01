@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./_sidebar.scss";
 
 const Sidebar = props => {
-  console.log("props in side bar", props)
+  // console.log("props in side bar", props)
   return (
     <nav id="sidebar">
       {/* <div className="sidebar-header">

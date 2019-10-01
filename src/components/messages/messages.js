@@ -20,11 +20,11 @@ class Messages extends Component {
   }
 
   playMethod = stream => {
-    console.log("PLAY Method", stream);
+    // console.log("PLAY Method", stream);
   };
   render() {
     const { messages } = this.state;
-    console.log(typeof messages);
+    // console.log(typeof messages);
     return (
       <React.Fragment>
         <div className="car-management">

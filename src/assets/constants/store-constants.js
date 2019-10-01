@@ -36,3 +36,11 @@ export const footerStateConstant = {
 };
 
 /**********end ****************/
+
+
+/**********Live Video ****************/
+
+export const liveVideoStreamConstant = {
+  SUCCESS: "LIVE_VIDEO_SUCCESS",
+  ERROR: "LIVE_VIDEO_ERROR"
+}

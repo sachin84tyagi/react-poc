@@ -10,7 +10,7 @@ const getDbRef = collectionName => {
 
 
 export const getTeacherNotificationFromDB = (dispatch, uid) => {
-    console.log("getTeacherNotificationFromDB", uid)
+    // console.log("getTeacherNotificationFromDB", uid)
     const notifications = [];
     const db = dbFactory.create('firebase');
     db.firestore().collection('chatNotifications').where("tId", "==", uid).where("deleted", "==", false).get()
@@ -26,7 +26,7 @@ export const getTeacherNotificationFromDB = (dispatch, uid) => {
 }
 
 export const getNotificationFromDB = (dispatch, uid) => {
-    console.log("getNotificationFromDB")
+    // console.log("getNotificationFromDB")
     const notifications = [];
     const db = dbFactory.create('firebase');
     db.firestore().collection('chatNotifications').where("nId", "==", uid).where("deleted", "==", false).get()
@@ -42,7 +42,7 @@ export const getNotificationFromDB = (dispatch, uid) => {
 }
 
 export const getTeacherFromStudentIdFromDB = (dispatch, uid) => {
-    console.log("getNotificationFromDB")
+    // console.log("getNotificationFromDB")
     const notifications = [];
     const db = dbFactory.create('firebase');
     db.firestore().collection('chatNotifications').where("sId", "==", uid).where("deleted", "==", false).get()
@@ -58,7 +58,7 @@ export const getTeacherFromStudentIdFromDB = (dispatch, uid) => {
 }
 
 export const getTeachertNotificationFromDB = (dispatch, uid) => {
-    console.log("getStudentNotificationFromDB")
+    // console.log("getStudentNotificationFromDB")
     const notifications = [];
     const db = dbFactory.create('firebase');
     db.firestore().collection('chatNotifications').where("tId", "==", uid).where("deleted", "==", false).get()
@@ -76,7 +76,7 @@ export const getTeachertNotificationFromDB = (dispatch, uid) => {
 
 
 export const getTeacherFromDB = (dispatch, uid) => {
-    console.log("getTeacherFromDB")
+    // console.log("getTeacherFromDB")
     const data = [];
     const db = dbFactory.create('firebase');
     db.firestore().collection('userProfiles').where("userId", "==", uid).get()
@@ -91,7 +91,7 @@ export const getTeacherFromDB = (dispatch, uid) => {
 }
 
 export const getStudentFromDB = (dispatch, uid) => {
-    console.log("getStudentFromDB")
+    // console.log("getStudentFromDB")
     const data = [];
     const db = dbFactory.create('firebase');
     db.firestore().collection('userProfiles').where("userId", "==", uid).get()
@@ -128,7 +128,7 @@ export const getNotificationDataFromNid = userId => {
 };
 
 export const getUserProfile = userId => {
-    console.log("getUserProfile", userId)
+    // console.log("getUserProfile", userId)
     return getDbRef('userProfiles')
         .where('userId', '==', userId)
         .get();
@@ -149,7 +149,7 @@ export const saveChatNotificationDetails = chatNotificationDetails => {
 
 
 export const udpateChatNotificationDetails = chatNotificationDetails => {
-    console.log(chatNotificationDetails.nId)
+    // console.log(chatNotificationDetails.nId)
     const db = dbFactory.create('firebase');
     db.firestore().collection('chatNotifications').doc(chatNotificationDetails.nId).update(chatNotificationDetails).then(() => {
         toastr.success('Success.');

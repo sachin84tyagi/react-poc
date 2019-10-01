@@ -71,7 +71,7 @@ export default class DashboardDescription extends Component {
   }
 
   render() {
-    console.log("_rackDetails Data :::::::", this.state._rackDetails);
+    // console.log("_rackDetails Data :::::::", this.state._rackDetails);
     return (
       <div className="scrollmenu">
 

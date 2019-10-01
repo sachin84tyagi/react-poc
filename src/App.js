@@ -29,7 +29,7 @@ class App extends Component {
 //export default App;
 
 function mapStateToProps(state) {
-  // console.log("ddsgschghx>>>>>>>>>", state)
+  // // console.log("ddsgschghx>>>>>>>>>", state)
   const { alert } = state;
   return {
     alert

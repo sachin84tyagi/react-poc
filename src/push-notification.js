@@ -16,16 +16,16 @@ export const askForPermissioToReceiveNotifications = async () => {
     await messaging.requestPermission();
 
     let token = await messaging.getToken();
-    console.log("before delete token :", token);
+    // console.log("before delete token :", token);
     if (token) {
       await messaging.deleteToken(token);
       token = await messaging.getToken();
-      console.log("token :", token);
+      // console.log("token :", token);
     }
 
     localStorage.setItem("notification-token", token);
     const user = JSON.parse(localStorage.getItem("user"));
-    console.log("user", user);
+    // console.log("user", user);
     axios.put(
       "https://jwrr2fa8mf.execute-api.us-east-1.amazonaws.com/p3/notificationtoken",
       {
@@ -35,7 +35,7 @@ export const askForPermissioToReceiveNotifications = async () => {
     );
     return token;
   } catch (error) {
-    console.error(error);
+    // console.error(error);
   }
 };
 
@@ -45,16 +45,16 @@ export const getFirebaseTokenData = async () => {
     //await messaging.requestPermission();
 
     let token = await messaging.getToken();
-    console.log("before delete token :", token);
+    // console.log("before delete token :", token);
     if (token) {
       await messaging.deleteToken(token);
       token = await messaging.getToken();
-      console.log("token :", token);
+      // console.log("token :", token);
     }
 
     //localStorage.setItem("notification-token", token);
     const user = JSON.parse(localStorage.getItem("user"));
-    console.log("user", user);
+    // console.log("user", user);
     // axios.put(
     //   "https://jwrr2fa8mf.execute-api.us-east-1.amazonaws.com/p3/notificationtoken",
     //   {
@@ -64,6 +64,6 @@ export const getFirebaseTokenData = async () => {
     // );
     return token;
   } catch (error) {
-    console.error(error);
+    // console.error(error);
   }
 };

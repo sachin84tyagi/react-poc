@@ -1,6 +1,7 @@
 import { userConstants } from "../assets/constants/store-constants";
 import { authService } from "../services/authService";
 import { alertActions } from "./alertActions";
+import { liveVideoStreamAction } from "./liveVideo.actions";
 import { history } from "../helpers/history";
 
 export const userAuthActions = {
@@ -13,6 +14,7 @@ function login(username, password) {
     authService.login(username, password).then(
       user => {
         if (user) {
+          dispatch(liveVideoStreamAction.getVideoStream())
           dispatch(request({ username }));
           history.push("/dashboard")
         } else {

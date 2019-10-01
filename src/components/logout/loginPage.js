@@ -30,13 +30,13 @@ class LoginPage extends Component {
     };
 
     // reset login status
-    // console.log("props in login", this.props);
+    // // console.log("props in login", this.props);
     // this.props.dispatch(userAuthActions.logout());
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log("submit form >>", this.loginForm.value);
+    // console.log("submit form >>", this.loginForm.value);
     this.setState({ submitted: true });
     if (this.loginForm.value) {
       // this.props.history.push('/managerDashboard')
@@ -65,7 +65,7 @@ class LoginPage extends Component {
   });
 
   render() {
-    //console.log("this.state.type", this.state.type);
+    //// console.log("this.state.type", this.state.type);
     return (
       <div>
         <Header isAuthorized={this.state.isLogin} />
@@ -187,7 +187,7 @@ class LoginPage extends Component {
 //export default loginPage;
 
 function mapStateToProps(state) {
-  // console.log("in the login page", state);
+  // // console.log("in the login page", state);
   const { loggingIn } = state.authentication;
   return {
     loggingIn

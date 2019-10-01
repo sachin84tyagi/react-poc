@@ -31,10 +31,10 @@ class SignUp extends Component {
 
   handleSubmitSignUp = async e => {
     e.preventDefault();
-    console.log("in the sign up form", this.signUpForm.value);
+    // console.log("in the sign up form", this.signUpForm.value);
     if (this.signUpForm.value) {
       var authStatus = await authService.signUp(this.signUpForm.value)
-      console.log("auth status in component", authStatus)
+      // console.log("auth status in component", authStatus)
       if(authStatus.status === 201) {
         history.push("/")
       }

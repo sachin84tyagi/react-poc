@@ -76,7 +76,7 @@ export default class DashboardDescription extends Component {
     // if (this.state._rackDetails.length != 0) {
     //   data = this.state._rackDetails;
     // }
-    // console.log("_rackDetails Data :::::::", data);
+    // // console.log("_rackDetails Data :::::::", data);
     return (
       <div className="scrollmenu">
         {

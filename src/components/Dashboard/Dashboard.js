@@ -16,6 +16,9 @@ import axios from "axios";
 import { Player } from "video-react";
 import VideoPlayer from "../../helpers/videoPlayer";
 
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
 //import firebase from "../../firebase";
 
 class Dashboard extends Component {
@@ -44,15 +47,15 @@ class Dashboard extends Component {
       "https://ubs2syt3te.execute-api.us-east-1.amazonaws.com/prod/getlivestream",
       axiosConfig
     );
-    console.log("Response Data ::::: ", data);
+    // console.log("Response Data ::::: ", data);
     //const { videoJsOptions } = { ...this.state };
     //const URL =
     //"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
     //videoJsOptions.sources[0].src =
     //"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
-    // console.slog("videoData >>>>>> ", data);
-    //console.log("videoJsOptions ---------------->>>>>> ", videoJsOptions);
-    //console.log("videoData src src >>>>>> ", this.state.videJsOptions);
+    // // console.slog("videoData >>>>>> ", data);
+    //// console.log("videoJsOptions ---------------->>>>>> ", videoJsOptions);
+    //// console.log("videoData src src >>>>>> ", this.state.videJsOptions);
     //this.setState({ src: data });
 
     /////////////
@@ -60,18 +63,18 @@ class Dashboard extends Component {
     // messaging
     //   .requestPermission()
     //   .then(function() {
-    //     console.log("Have Permission");
+    //     // console.log("Have Permission");
     //     return messaging.getToken();
     //   })
     //   .then(function(token) {
-    //     console.log("Token Value >>>>>>", token);
+    //     // console.log("Token Value >>>>>>", token);
     //   })
     //   .catch(function(err) {
-    //     console.log("Error Occured", err);
+    //     // console.log("Error Occured", err);
     //   });
 
     // messaging.onMessage(function(payload) {
-    //   console.log("On Message Payload ::::>>>>>>> ", payload);
+    //   // console.log("On Message Payload ::::>>>>>>> ", payload);
     // });
 
     /////////////////
@@ -110,15 +113,49 @@ class Dashboard extends Component {
   };
 
   onClickFn = data => {
-    console.log("data", data);
+    // console.log("data", data);
     this.setState({
       showSideBar: data
     });
   };
 
+  renderVideo(data) {
+    const videoJsOptions = {
+      autoplay: true,
+      controls: false,
+      sources: [
+        {
+          src: data.streamUrl
+        }
+      ]
+    };
+    console.log("in the render method", data.streamUrl);
+    return (
+      <div className={`text-center cccc video-player`}>
+        <div
+          style={{
+            boxShadow: "0 0 5px #DAA520",
+            backgroundColor: "#000"
+          }}
+        >
+          <VideoPlayer {...videoJsOptions} />
+        </div>
+
+        <div
+          style={{
+            color: "#d19b3d",
+            fontSize: "13px",
+            marginBottom: "40px",
+            marginTop: "20px"
+          }}
+        ></div>
+      </div>
+    );
+  }
+
   render() {
     const { open, video, videoJsOptions } = this.state;
-    console.log("videoJsOptions :::::>>>>> ", videoJsOptions.sources);
+    // console.log("videoJsOptions :::::>>>>> ", videoJsOptions.sources);
     // const videoJsOptions = {
     //   autoplay: true,
     //   controls: false,
@@ -136,7 +173,11 @@ class Dashboard extends Component {
     if (calculateDiv <= 2) {
       calculateDiv = 2;
     }
-    console.log("State Visibility :::::::::::: ", this.state.visible);
+    let videoData = this.props.liveStreamVideoData;
+    console.log(
+      "State Visibility :::::::::::: ",
+      videoData.liveStreamData.length
+    );
 
     return (
       <React.Fragment>
@@ -180,8 +221,15 @@ class Dashboard extends Component {
                     Video Information List
                   </div>
                 </div>
-                <div className="row">
-                  {
+                <div className = 'd-flex'>
+                  {videoData && videoData.liveStreamData.length
+                    ? videoData.liveStreamData.map((data, index) => (
+                        <div key= {index} style={{ color: "#fff" }}>
+                          {this.renderVideo(data)}
+                        </div>
+                      ))
+                    : null}
+                  {/* {
                     <div
                       className={`col-lg-${calculateDiv} text-center video-player`}
                     >
@@ -201,10 +249,9 @@ class Dashboard extends Component {
                           marginBottom: "40px",
                           marginTop: "20px"
                         }}
-                      >
-                      </div>
+                      ></div>
                     </div>
-                  }
+                  } */}
                 </div>
               </div>
             </div>
@@ -215,4 +262,16 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+function mapStateToProps(state) {
+  // console.log("in the dashboard component", state)
+  return {
+    liveStreamVideoData: state.liveVideoStreamReducer
+  };
+}
+
+const connectedDashboard = connect(
+  mapStateToProps,
+  null
+)(withRouter(Dashboard));
+
+export { connectedDashboard as Dashboard };

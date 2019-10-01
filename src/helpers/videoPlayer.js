@@ -12,23 +12,23 @@ class VideoPlayer extends Component {
 
   componentDidMount() {
     // instantiate Video.js
-    console.log("video props", this.props);
+    // console.log("video props", this.props);
     // this.player = videojs(this.videoNode, this.props.videoOptions, function onPlayerReady() {
-    //   // console.log("this.props", this.props);
+    //   // // console.log("this.props", this.props);
     // });
     // //let controlBar = document.getElementsByClassName('vjs-control-bar');
-    // //console.log('controlBar', this.player.getChild("controlBar"));
+    // //// console.log('controlBar', this.player.getChild("controlBar"));
     // //controlBar[0].className += " control-bar-pos"
     // //controlBar[0].addClass('control-bar-pos');
 
     // this.player.on("play", function () {
-    //   console.log("Play>>>>>>>>>>");
+    //   // console.log("Play>>>>>>>>>>");
     //   //e.prevenDefault();
     // })
   }
 
   componentWillReceiveProps(previosprops, nextprops) {
-    console.log("video props comp", previosprops, nextprops);
+    // console.log("video props comp", previosprops, nextprops);
     if (this.player) {
       this.player.dispose();
     }
@@ -37,7 +37,7 @@ class VideoPlayer extends Component {
       document.getElementById("video-js"),
       previosprops,
       function onPlayerReady() {
-        console.log("this.props again", previosprops);
+        // console.log("this.props again", previosprops);
       }
     );
   }

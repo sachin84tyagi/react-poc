@@ -57,7 +57,7 @@ class ModalComponent extends React.Component {
   }
 
   handleModalOpen() {
-    console.log("handle modal open");
+    // console.log("handle modal open");
     this.setState({ modalActive: true });
   }
   handleModalClose() {

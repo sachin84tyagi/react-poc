@@ -9,7 +9,7 @@ import { PageNotFound } from "./shared/error/PageNotFound";
 
 import Logout from "./components/logout/logoutPage";
 
-import Dashboard from "./components/Dashboard/Dashboard";
+import {Dashboard} from "./components/Dashboard/Dashboard";
 import SignUp from "./components/signUp/signUp"
 
 import NotificationData from "./components/notificationData/notificationData";

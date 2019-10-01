@@ -34,13 +34,13 @@ class NotificationDetails extends Component {
   }
 
   async componentWillMount() {
-    console.log("CDM PARAMS image ", this.props.match.params.image);
-    console.log("CDM PARAMS timeStamp ", this.props.match.params.timeStamp);
-    // console.log(
+    // console.log("CDM PARAMS image ", this.props.match.params.image);
+    // console.log("CDM PARAMS timeStamp ", this.props.match.params.timeStamp);
+    // // console.log(
     //   "CDM PARAMS stream ",
     //   JSON.parse(this.props.match.params.stream)
     // );
-    //console.log("CDM PARAMS ::: ", JSON.parse(this.props.match.params.id));
+    //// console.log("CDM PARAMS ::: ", JSON.parse(this.props.match.params.id));
 
     let axiosConfig = {
       headers: {
@@ -59,7 +59,7 @@ class NotificationDetails extends Component {
       },
       axiosConfig
     );
-    console.log("Response from API ::: ", data);
+    // console.log("Response from API ::: ", data);
     if (data) {
       const videoJsOptions = {
         autoplay: true,
@@ -77,7 +77,7 @@ class NotificationDetails extends Component {
   }
 
   onClickFn = data => {
-    console.log("data", data);
+    // console.log("data", data);
     this.setState({
       showSideBar: data
     });
