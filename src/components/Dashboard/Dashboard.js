@@ -16,8 +16,11 @@ import axios from "axios";
 import { Player } from "video-react";
 import VideoPlayer from "../../helpers/videoPlayer";
 
+import VideoPlayer1 from "../../helpers/videoPlayer1";
+
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import { liveStreamVideoService } from "../../services/liveStreamVideo.service";
 
 //import firebase from "../../firebase";
 
@@ -33,66 +36,12 @@ class Dashboard extends Component {
     arrowClass: "fa fa-angle-down",
     video: [],
     videoJsOptions: {},
-    showSideBar: true
+    videoJsOptions1: {},
+    showSideBar: true,
+    videoData: []
   };
 
-  async componentDidMount() {
-    let axiosConfig = {
-      headers: {
-        "Content-Type":
-          "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token"
-      }
-    };
-    const { data } = await axios.get(
-      "https://ubs2syt3te.execute-api.us-east-1.amazonaws.com/prod/getlivestream",
-      axiosConfig
-    );
-    // console.log("Response Data ::::: ", data);
-    //const { videoJsOptions } = { ...this.state };
-    //const URL =
-    //"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
-    //videoJsOptions.sources[0].src =
-    //"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
-    // // console.slog("videoData >>>>>> ", data);
-    //// console.log("videoJsOptions ---------------->>>>>> ", videoJsOptions);
-    //// console.log("videoData src src >>>>>> ", this.state.videJsOptions);
-    //this.setState({ src: data });
-
-    /////////////
-    // const messaging = firebase.messaging();
-    // messaging
-    //   .requestPermission()
-    //   .then(function() {
-    //     // console.log("Have Permission");
-    //     return messaging.getToken();
-    //   })
-    //   .then(function(token) {
-    //     // console.log("Token Value >>>>>>", token);
-    //   })
-    //   .catch(function(err) {
-    //     // console.log("Error Occured", err);
-    //   });
-
-    // messaging.onMessage(function(payload) {
-    //   // console.log("On Message Payload ::::>>>>>>> ", payload);
-    // });
-
-    /////////////////
-    if (data) {
-      const videoJsOptions = {
-        autoplay: true,
-        controls: false,
-        sources: [
-          {
-            src: data
-          }
-        ]
-      };
-      this.setState({ videoJsOptions });
-    }
-  }
-
-  onOpenModal = id => {
+    onOpenModal = id => {
     this.setState({
       open: {
         [id]: true
@@ -119,66 +68,143 @@ class Dashboard extends Component {
     });
   };
 
-  renderVideo(data) {
-    const videoJsOptions = {
-      autoplay: true,
-      controls: false,
-      sources: [
-        {
-          src: data.streamUrl
-        }
-      ]
-    };
-    console.log("in the render method", data.streamUrl);
-    return (
-      <div className={`text-center cccc video-player`}>
-        <div
-          style={{
-            boxShadow: "0 0 5px #DAA520",
-            backgroundColor: "#000"
-          }}
-        >
-          <VideoPlayer {...videoJsOptions} />
-        </div>
+  async componentDidMount() {
+    let data = await liveStreamVideoService.liveStreamVideo();
+    if (data) {
+      // if (data[0].streamUrl) {
+        const videoJsOptions = {
+          autoplay: true,
+          controls: false,
+          sources: [
+            {
+              src: data[0].streamUrl,
+              type: "application/x-mpegURL"
+            }
+          ]
+        };
+        this.setState({
+          videoJsOptions: videoJsOptions
+        });
+      // }
+      //  if (data[1] && data[1].streamUrl) {
 
-        <div
-          style={{
-            color: "#d19b3d",
-            fontSize: "13px",
-            marginBottom: "40px",
-            marginTop: "20px"
-          }}
-        ></div>
-      </div>
-    );
+        const videoJsOptions1 = {
+          autoplay: true,
+          controls: false,
+          sources: [
+            {
+              src: data[1].streamUrl,
+              type: "application/x-mpegURL"
+            }
+          ]
+        };
+        this.setState({
+          videoJsOptions1: videoJsOptions1
+        });
+
+        // const videoJsOptions1 = {
+        //   autoplay: true,
+        //   controls: false,
+        //   sources: [
+        //     {
+        //       src: data[1].streamUrl,
+        //       type: "application/x-mpegURL"
+        //     }
+        //   ]
+        // };
+        // this.setState({
+        //   videoJsOptions1: videoJsOptions1
+        // });
+      // }
+    }
+    // console.log("in componentDidMount00000000", this.state.videoJsOptions);
+    // console.log("in componentDidMount111111111", this.state.videoJsOptions1);
   }
 
+  renderVideo = (data, index) => {
+    if (index == 0) {
+      console.log("in the renderVideo0000000", data.streamUrl);
+      const videoJsOptions = {
+        autoplay: true,
+        controls: false,
+        sources: [
+          {
+            src: data.streamUrl
+          }
+        ],
+        index: "video-js0"
+      };
+      this.setState({ videoJsOptions });
+      return (
+        <div className={`text-center cccc video-player`}>
+          <div
+            style={{
+              boxShadow: "0 0 5px #DAA520",
+              backgroundColor: "#000"
+            }}
+          >
+            <VideoPlayer {...videoJsOptions} />
+          </div>
+
+          <div
+            style={{
+              color: "#d19b3d",
+              fontSize: "13px",
+              marginBottom: "40px",
+              marginTop: "20px"
+            }}
+          ></div>
+        </div>
+      );
+    } else if (index == 1) {
+      console.log("in the renderVideo11111111111", data.streamUrl);
+      const videoJsOptions = {
+        autoplay: true,
+        controls: false,
+        sources: [
+          {
+            src: data.streamUrl
+          }
+        ],
+        index: "video-js1"
+      };
+      this.setState({ videoJsOptions });
+      return (
+        <div className={`text-center cccc video-player`}>
+          <div
+            style={{
+              boxShadow: "0 0 5px #DAA520",
+              backgroundColor: "#000"
+            }}
+          >
+            <VideoPlayer {...videoJsOptions} />
+          </div>
+
+          <div
+            style={{
+              color: "#d19b3d",
+              fontSize: "13px",
+              marginBottom: "40px",
+              marginTop: "20px"
+            }}
+          ></div>
+        </div>
+      );
+    }
+  };
+
   render() {
-    const { open, video, videoJsOptions } = this.state;
-    // console.log("videoJsOptions :::::>>>>> ", videoJsOptions.sources);
-    // const videoJsOptions = {
-    //   autoplay: true,
-    //   controls: false,
-    //   sources: [
-    //     {
-    //       src:
-    //         "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-    //       type: "video/mp4"
-    //     }
-    //   ]
-    // };
+    const { open, video, videoJsOptions, videoJsOptions1 } = this.state;
 
     let calculateDiv = Math.ceil(12 / this.state.video.length);
     calculateDiv = 6;
     if (calculateDiv <= 2) {
       calculateDiv = 2;
     }
-    let videoData = this.props.liveStreamVideoData;
-    console.log(
-      "State Visibility :::::::::::: ",
-      videoData.liveStreamData.length
-    );
+    // let videoData = this.props.liveStreamVideoData;
+    console.log("in the videoJsOptions", videoJsOptions);
 
+    console.log("in the videoJsOptions1111111111", videoJsOptions1);
     return (
       <React.Fragment>
         <div className="car-management">
@@ -221,26 +247,17 @@ class Dashboard extends Component {
                     Video Information List
                   </div>
                 </div>
-                <div className = 'd-flex'>
-                  {videoData && videoData.liveStreamData.length
-                    ? videoData.liveStreamData.map((data, index) => (
-                        <div key= {index} style={{ color: "#fff" }}>
-                          {this.renderVideo(data)}
-                        </div>
-                      ))
-                    : null}
-                  {/* {
-                    <div
-                      className={`col-lg-${calculateDiv} text-center video-player`}
-                    >
+                <div className="d-flex">
+                    <div className={`text-center cccc video-player`}>
                       <div
                         style={{
                           boxShadow: "0 0 5px #DAA520",
                           backgroundColor: "#000"
                         }}
                       >
-                        <VideoPlayer {...videoJsOptions} />
-                      </div>
+                        
+                        <VideoPlayer {...videoJsOptions} key = '0' />
+                        </div>
 
                       <div
                         style={{
@@ -251,7 +268,28 @@ class Dashboard extends Component {
                         }}
                       ></div>
                     </div>
-                  } */}
+                 
+                    <div className={`text-center cccc video-player`}>
+                      <div
+                        style={{
+                          boxShadow: "0 0 5px #DAA520",
+                          backgroundColor: "#000"
+                        }}
+                      >
+        
+                        <VideoPlayer1 {...videoJsOptions1} key = '1' />
+                        </div>
+
+                      <div
+                        style={{
+                          color: "#d19b3d",
+                          fontSize: "13px",
+                          marginBottom: "40px",
+                          marginTop: "20px"
+                        }}
+                      ></div>
+                    </div>
+                 
                 </div>
               </div>
             </div>

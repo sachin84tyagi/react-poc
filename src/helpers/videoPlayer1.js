@@ -3,7 +3,7 @@ import videojs from "video.js";
 import "./videoPlayer.css";
 import "video.js/dist/video-js.css";
 //
-class VideoPlayer extends Component {
+class VideoPlayer1 extends Component {
   //   constructor(props) {
   //     super(props);
   //     this.videoHTML = this.videoHTML.bind(this);
@@ -30,16 +30,12 @@ class VideoPlayer extends Component {
     if (this.player) {
       this.player.dispose();
     }
-    console.log("previosprops000000", previosprops);
-    // console.log(
-    //   "File VIdeo JS Player Video URL Type componentWillReceiveProps >>>> ",
-    //   typeof this.props.index
-    // );
-    document.querySelector("div.video-container").innerHTML = this.videoHTML(
-      "video-js0"
+    console.log("previosprops11111111111", previosprops);
+    document.querySelector("div.video-container1").innerHTML = this.videoHTML(
+      "video-js1"
     );
     this.player = videojs(
-      document.getElementById("video-js0"),
+      document.getElementById("video-js1"),
       previosprops,
       function onPlayerReady() {}
     );
@@ -47,21 +43,11 @@ class VideoPlayer extends Component {
 
   videoHTML = id => {
     // console.log("videoHTML>>>>>>>>>>>>>", id)
-    // if(id === "video-js0") {
     return (
       "<div data-vjs-player>" +
-      '<video className="video-js" id="video-js0" />' +
+      '<video className="video-js" id="video-js1" />' +
       "\t\t</div>"
     );
-
-    // } else if(id === "video-js1") {
-    //   return (
-    //     "<div data-vjs-player>" +
-    //     '<video className="video-js" id="video-js1" />' +
-    //     "\t\t</div>"
-    //   );
-
-    // }
   };
 
   componentWillUnmount() {
@@ -72,14 +58,14 @@ class VideoPlayer extends Component {
   }
   render() {
     // console.log("in the video player>>>>>>>>>>>>..", this.props);
+
     return (
-      <div style={this.styleDiv} className="video-container">
-        
-      <div key="0" data-vjs-player>
+      <div style={this.styleDiv} className="video-container1">
+      <div key="1" data-vjs-player>
         <video
           ref={node => (this.videoNode = node)}
           className="video-js"
-          id="video-js0"
+          id="video-js1"
         />
       </div>
       </div>
@@ -87,4 +73,4 @@ class VideoPlayer extends Component {
   }
 }
 
-export default VideoPlayer;
+export default VideoPlayer1;
