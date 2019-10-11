@@ -9,19 +9,18 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import { authService } from "../../services/authService";
+// import { authService } from "../../services/authService";
 import "./_loginPage.scss";
 import Header from "../../shared/header/header";
 
 import * as constant from "../../assets/constants";
 // import { userAuthActions } from "../../actions/authAcions";
 // import { footerStatusAction } from "../../actions/footerStatusAction";
-import hclLogo from "../../assets/images/HCLLogo.png";
+// import hclLogo from "../../assets/images/HCLLogo.png";
 
 import {
   userAuthActions,
-  footerActions,
-  alertActions
+  footerActions
 } from "../../actions/index";
 
 class LoginPage extends Component {
@@ -46,12 +45,12 @@ class LoginPage extends Component {
         this.loginForm.value.userName,
         this.loginForm.value.password
       );
-      // console.log("loggendInStatus ::::::: >>>>>>>>>", loggendInStatus);
-      if (loggendInStatus === true) {
-        this.props.history.push("/dashboard");
-      } else {
-        this.props.history.push("/");
-      }
+      console.log("loggendInStatus ::::::: >>>>>>>>>", this.props);
+      // if (loggendInStatus === true) {
+      //   this.props.history.push("/dashboard");
+      // } else {
+      //   this.props.history.push("/");
+      // }
     }
   };
 
@@ -201,18 +200,9 @@ function mapStateToProps(state) {
   return {
     loggingIn,
     userLoginStatus: state.alert
-
   };
 }
 
-// function matchDispatchToProps() {
-
-//   return {
-//     footerStatus : status => {
-//       footerStatusAction.footerStatus(status)
-//     }
-//   }
-// }
 
 const actionCreators = {
   passParam: footerActions.getFooterParam,

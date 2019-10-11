@@ -3,16 +3,23 @@
   height: none !important;
 }
 
-#video-js {
-  /* width: 488px; */
-}
-video.video-js {
-  width: 438px;
+
+video {
+  width: 300px !important;
+  object-fit: cover !important;
 }
 
-.video-js {
-  width : 100% !important;
+/* #video-js0 {
+  width: 300px;
+  height: 225px;
 }
-/* .vjs-control-bar {
-  display: none;
+
+#video-js1 {
+  width: 300px;
+  height: 225px;
 } */
+
+.video-js {
+  width: 300px;
+  height: 225px;
+}

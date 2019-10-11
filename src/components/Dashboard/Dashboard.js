@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import classnames from "classnames";
+// import { Link } from "react-router-dom";
+// import classnames from "classnames";
 
 import "./dashboard.scss";
 
@@ -9,18 +9,16 @@ import Sidebar from "../../shared/sidebar/sidebar";
 import SidebarCollpase from "../../shared/sidebar/sideBarCollapse";
 
 //import ReactPlayer from "react-player";
-import Modal from "react-responsive-modal";
-import { relative } from "path";
-import videoPlay from "../../assets/images/play.png";
-import axios from "axios";
-import { Player } from "video-react";
+// import Modal from "react-responsive-modal";
+// import { relative } from "path";
+// import videoPlay from "../../assets/images/play.png";
+// import axios from "axios";
+// import { Player } from "video-react";
 import VideoPlayer from "../../helpers/videoPlayer";
-
-import VideoPlayer1 from "../../helpers/videoPlayer1";
 
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { liveStreamVideoService } from "../../services/liveStreamVideo.service";
+import { history } from "../../helpers/history";
 
 //import firebase from "../../firebase";
 
@@ -35,13 +33,11 @@ class Dashboard extends Component {
     isLogin: true,
     arrowClass: "fa fa-angle-down",
     video: [],
-    videoJsOptions: {},
-    videoJsOptions1: {},
     showSideBar: true,
     videoData: []
   };
 
-    onOpenModal = id => {
+  onOpenModal = id => {
     this.setState({
       open: {
         [id]: true
@@ -62,149 +58,52 @@ class Dashboard extends Component {
   };
 
   onClickFn = data => {
-    // console.log("data", data);
     this.setState({
       showSideBar: data
     });
   };
 
-  async componentDidMount() {
-    let data = await liveStreamVideoService.liveStreamVideo();
-    if (data) {
-      // if (data[0].streamUrl) {
-        const videoJsOptions = {
-          autoplay: true,
-          controls: false,
-          sources: [
-            {
-              src: data[0].streamUrl,
-              type: "application/x-mpegURL"
-            }
-          ]
-        };
-        this.setState({
-          videoJsOptions: videoJsOptions
-        });
-      // }
-      //  if (data[1] && data[1].streamUrl) {
+  componentDidMount() {
+    // console.log("in the dashboard", this.props.liveStreamVideoData);
+    try {
+      let data = this.props.liveStreamVideoData.liveStreamData;
 
-        const videoJsOptions1 = {
-          autoplay: true,
-          controls: false,
-          sources: [
-            {
-              src: data[1].streamUrl,
-              type: "application/x-mpegURL"
-            }
-          ]
-        };
-        this.setState({
-          videoJsOptions1: videoJsOptions1
+      if (data) {
+        let videoJsOptionsName = [];
+        data.map((res, index) => {
+          videoJsOptionsName[index] = {
+            autoplay: true,
+            controls: false,
+            sources: [
+              {
+                src: data[index].streamUrl,
+                type: "application/x-mpegURL"
+              }
+            ],
+            index: "video-container" + index,
+            id: "video-js" + index
+          };
         });
 
-        // const videoJsOptions1 = {
-        //   autoplay: true,
-        //   controls: false,
-        //   sources: [
-        //     {
-        //       src: data[1].streamUrl,
-        //       type: "application/x-mpegURL"
-        //     }
-        //   ]
-        // };
-        // this.setState({
-        //   videoJsOptions1: videoJsOptions1
-        // });
-      // }
+        // console.log("in dashboard response", videoJsOptionsName);
+        this.setState({
+          videoData: videoJsOptionsName
+        });
+      }
+    } catch (err) {
+      history.push("/");
     }
-    // console.log("in componentDidMount00000000", this.state.videoJsOptions);
-    // console.log("in componentDidMount111111111", this.state.videoJsOptions1);
   }
 
-  renderVideo = (data, index) => {
-    if (index == 0) {
-      console.log("in the renderVideo0000000", data.streamUrl);
-      const videoJsOptions = {
-        autoplay: true,
-        controls: false,
-        sources: [
-          {
-            src: data.streamUrl
-          }
-        ],
-        index: "video-js0"
-      };
-      this.setState({ videoJsOptions });
-      return (
-        <div className={`text-center cccc video-player`}>
-          <div
-            style={{
-              boxShadow: "0 0 5px #DAA520",
-              backgroundColor: "#000"
-            }}
-          >
-            <VideoPlayer {...videoJsOptions} />
-          </div>
-
-          <div
-            style={{
-              color: "#d19b3d",
-              fontSize: "13px",
-              marginBottom: "40px",
-              marginTop: "20px"
-            }}
-          ></div>
-        </div>
-      );
-    } else if (index == 1) {
-      console.log("in the renderVideo11111111111", data.streamUrl);
-      const videoJsOptions = {
-        autoplay: true,
-        controls: false,
-        sources: [
-          {
-            src: data.streamUrl
-          }
-        ],
-        index: "video-js1"
-      };
-      this.setState({ videoJsOptions });
-      return (
-        <div className={`text-center cccc video-player`}>
-          <div
-            style={{
-              boxShadow: "0 0 5px #DAA520",
-              backgroundColor: "#000"
-            }}
-          >
-            <VideoPlayer {...videoJsOptions} />
-          </div>
-
-          <div
-            style={{
-              color: "#d19b3d",
-              fontSize: "13px",
-              marginBottom: "40px",
-              marginTop: "20px"
-            }}
-          ></div>
-        </div>
-      );
-    }
-  };
-
   render() {
-    const { open, video, videoJsOptions, videoJsOptions1 } = this.state;
-
-    let calculateDiv = Math.ceil(12 / this.state.video.length);
-    calculateDiv = 6;
-    if (calculateDiv <= 2) {
-      calculateDiv = 2;
-    }
-    // let videoData = this.props.liveStreamVideoData;
-    console.log("in the videoJsOptions", videoJsOptions);
-
-    console.log("in the videoJsOptions1111111111", videoJsOptions1);
+    const { videoData } = this.state;
+    console.log("in the render dashboard", videoData);
+    var xyz = videoData.reduce(
+      (rows, key, index) =>
+        (index % 2 == 0 ? rows.push([key]) : rows[rows.length - 1].push(key)) &&
+        rows,
+      []
+    );
     return (
       <React.Fragment>
         <div className="car-management">
@@ -247,49 +146,80 @@ class Dashboard extends Component {
                     Video Information List
                   </div>
                 </div>
-                <div className="d-flex">
-                    <div className={`text-center cccc video-player`}>
-                      <div
-                        style={{
-                          boxShadow: "0 0 5px #DAA520",
-                          backgroundColor: "#000"
-                        }}
-                      >
-                        
-                        <VideoPlayer {...videoJsOptions} key = '0' />
+                <div>
+                  {xyz.map((data, index) => {
+                    return (
+                      <div className="row">
+                        {data.map((data, index) => {
+                          return (
+                            <div
+                              className="col-6"
+                              style={{ color: "#fff" }}
+                              key={index}
+                            >
+                              <div
+                                className={`text-center cccc video-player`}
+                                key={index}
+                              >
+                                <div
+                                  style={{
+                                    boxShadow: "0 0 5px #DAA520",
+                                    backgroundColor: "#000"
+                                  }}
+                                  key={index}
+                                >
+                                  <div
+                                    style={this.styleDiv}
+                                    key={index}
+                                    className={data.index}
+                                  >
+                                    <VideoPlayer {...data} key={index} />
+                                  </div>
+                                </div>
+                                <div
+                                  style={{
+                                    color: "#d19b3d",
+                                    fontSize: "13px",
+                                    marginBottom: "40px",
+                                    marginTop: "20px"
+                                  }}
+                                ></div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    );
+                  })}
+                  {/* {videoData.map((data, index) => {
+                    return (
+                      <div className={`text-center cccc video-player`} key={index}>
+                        <div
+                          style={{
+                            boxShadow: "0 0 5px #DAA520",
+                            backgroundColor: "#000"
+                          }}
+                          key={index}
+                        >
+                          <div
+                            style={this.styleDiv}
+                            key={index}
+                            className={data.index}
+                          >
+                            <VideoPlayer {...data} key={index} />
+                          </div>
                         </div>
-
-                      <div
-                        style={{
-                          color: "#d19b3d",
-                          fontSize: "13px",
-                          marginBottom: "40px",
-                          marginTop: "20px"
-                        }}
-                      ></div>
-                    </div>
-                 
-                    <div className={`text-center cccc video-player`}>
-                      <div
-                        style={{
-                          boxShadow: "0 0 5px #DAA520",
-                          backgroundColor: "#000"
-                        }}
-                      >
-        
-                        <VideoPlayer1 {...videoJsOptions1} key = '1' />
-                        </div>
-
-                      <div
-                        style={{
-                          color: "#d19b3d",
-                          fontSize: "13px",
-                          marginBottom: "40px",
-                          marginTop: "20px"
-                        }}
-                      ></div>
-                    </div>
-                 
+                        <div
+                          style={{
+                            color: "#d19b3d",
+                            fontSize: "13px",
+                            marginBottom: "40px",
+                            marginTop: "20px"
+                          }}
+                        ></div>
+                      </div>
+                    );
+                  })} */}
                 </div>
               </div>
             </div>
@@ -301,7 +231,6 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps(state) {
-  // console.log("in the dashboard component", state)
   return {
     liveStreamVideoData: state.liveVideoStreamReducer
   };

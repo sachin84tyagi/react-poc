@@ -2,7 +2,7 @@ import { userConstants } from "../assets/constants/store-constants";
 import { authService } from "../services/authService";
 import { alertActions } from "./alertActions";
 import { liveVideoStreamAction } from "./liveVideo.actions";
-import { history } from "../helpers/history";
+// import { history } from "../helpers/history";
 
 export const userAuthActions = {
   login,
@@ -14,9 +14,9 @@ function login(username, password) {
     authService.login(username, password).then(
       user => {
         if (user) {
-          dispatch(liveVideoStreamAction.getVideoStream())
           dispatch(request({ username }));
-          history.push("/dashboard")
+          // history.push("/dashboard")
+          dispatch(liveVideoStreamAction.getVideoStream())
         } else {
           dispatch(alertActions.error("Invalid Login Details."));
         }
