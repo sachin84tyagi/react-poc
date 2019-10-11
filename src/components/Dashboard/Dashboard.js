@@ -98,7 +98,7 @@ class Dashboard extends Component {
   render() {
     const { videoData } = this.state;
     console.log("in the render dashboard", videoData);
-    var xyz = videoData.reduce(
+    var videoDatas = videoData.reduce(
       (rows, key, index) =>
         (index % 2 == 0 ? rows.push([key]) : rows[rows.length - 1].push(key)) &&
         rows,
@@ -147,9 +147,9 @@ class Dashboard extends Component {
                   </div>
                 </div>
                 <div>
-                  {xyz.map((data, index) => {
+                  {videoDatas.map((data, index) => {
                     return (
-                      <div className="row">
+                      <div key = {index} className="row">
                         {data.map((data, index) => {
                           return (
                             <div
