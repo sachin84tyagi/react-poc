@@ -28,6 +28,7 @@ const Router = props => (
         path="/notificationDetails/:image/:timeStamp"
         component={NotificationDetails}
       />
+      {/* <Route exact path="/notificationDetails" component={NotificationDetails} /> */}
       <Route exact path="/message" component={Message} />
       <Route exact path = "/signUp" component = {SignUp} />
 

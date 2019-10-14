@@ -15,7 +15,6 @@ function login(username, password) {
       user => {
         if (user) {
           dispatch(request({ username }));
-          // history.push("/dashboard")
           dispatch(liveVideoStreamAction.getVideoStream())
         } else {
           dispatch(alertActions.error("Invalid Login Details."));

@@ -18,10 +18,7 @@ import * as constant from "../../assets/constants";
 // import { footerStatusAction } from "../../actions/footerStatusAction";
 // import hclLogo from "../../assets/images/HCLLogo.png";
 
-import {
-  userAuthActions,
-  footerActions
-} from "../../actions/index";
+import { userAuthActions, footerActions } from "../../actions/index";
 
 class LoginPage extends Component {
   constructor(props) {
@@ -45,7 +42,7 @@ class LoginPage extends Component {
         this.loginForm.value.userName,
         this.loginForm.value.password
       );
-      console.log("loggendInStatus ::::::: >>>>>>>>>", this.props);
+      console.log("loggendInStatus ::::::: >>>>>>>>>", loggendInStatus);
       // if (loggendInStatus === true) {
       //   this.props.history.push("/dashboard");
       // } else {
@@ -60,7 +57,7 @@ class LoginPage extends Component {
   });
 
   render() {
-    const  loginStatus  = Object.assign({}, this.props.userLoginStatus)
+    const loginStatus = Object.assign({}, this.props.userLoginStatus);
     return (
       <React.Fragment>
         <Header displaySideBar={false}></Header>
@@ -202,7 +199,6 @@ function mapStateToProps(state) {
     userLoginStatus: state.alert
   };
 }
-
 
 const actionCreators = {
   passParam: footerActions.getFooterParam,

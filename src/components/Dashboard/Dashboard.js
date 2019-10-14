@@ -1,24 +1,14 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
-// import classnames from "classnames";
-
-import "./dashboard.scss";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { history } from "../../helpers/history";
 
 import Header from "../../shared/header/header";
 import Sidebar from "../../shared/sidebar/sidebar";
 import SidebarCollpase from "../../shared/sidebar/sideBarCollapse";
 
-//import ReactPlayer from "react-player";
-// import Modal from "react-responsive-modal";
-// import { relative } from "path";
-// import videoPlay from "../../assets/images/play.png";
-// import axios from "axios";
-// import { Player } from "video-react";
 import VideoPlayer from "../../helpers/videoPlayer";
-
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { history } from "../../helpers/history";
+import "./dashboard.scss";
 
 //import firebase from "../../firebase";
 
@@ -191,35 +181,7 @@ class Dashboard extends Component {
                       </div>
                     );
                   })}
-                  {/* {videoData.map((data, index) => {
-                    return (
-                      <div className={`text-center cccc video-player`} key={index}>
-                        <div
-                          style={{
-                            boxShadow: "0 0 5px #DAA520",
-                            backgroundColor: "#000"
-                          }}
-                          key={index}
-                        >
-                          <div
-                            style={this.styleDiv}
-                            key={index}
-                            className={data.index}
-                          >
-                            <VideoPlayer {...data} key={index} />
-                          </div>
-                        </div>
-                        <div
-                          style={{
-                            color: "#d19b3d",
-                            fontSize: "13px",
-                            marginBottom: "40px",
-                            marginTop: "20px"
-                          }}
-                        ></div>
-                      </div>
-                    );
-                  })} */}
+                  
                 </div>
               </div>
             </div>

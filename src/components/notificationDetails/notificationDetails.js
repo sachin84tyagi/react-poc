@@ -59,20 +59,21 @@ class NotificationDetails extends Component {
       },
       axiosConfig
     );
-    // console.log("Response from API ::: ", data);
-    if (data) {
+    // const { data } = await axios.get("http://www.mocky.io/v2/5da41b1d2f000056008a0961")
+    console.log("Response from API ::: ", data.data);
+    if (data && data.data) {
       const videoJsOptions = {
         autoplay: true,
         controls: false,
         sources: [
           {
-            src: JSON.parse(data).VideoURL
+            src: data.data.VideoURL
           }
         ]
       };
 
       this.setState({ videoJsOptions });
-      this.setState({ tableData: JSON.parse(data) });
+      this.setState({ tableData: data.data });
     }
   }
 
@@ -133,48 +134,41 @@ class NotificationDetails extends Component {
                             backgroundColor: "#000"
                           }}
                         >
-                          <VideoPlayer {...videoJsOptions} />
+                          {/* <VideoPlayer {...videoJsOptions} /> */}
                           <hr />
                         </div>
-
-                        {/* <div
-                          style={{
-                            color: "#d19b3d",
-                            fontSize: "13px",
-                            marginBottom: "40px",
-                            marginTop: "20px"
-                          }}
-                        >
-                          dddd
-                          {
-                            //videoData.name
-                          }
-                        </div> */}
                       </div>
                     </div>
                   </div>
 
                   <div>
                     <table className="table table-dark table-striped detailed-table">
-                      {/* <thead>
-                        <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">First</th>
-                          <th scope="col">Last</th>
-                          <th scope="col">Handle</th>
-                        </tr>
-                      </thead> */}
                       <tbody>
                         <tr>
                           <th scope="row" className="table-entity">
                             Image
                           </th>
                           <td>
-                            <img
-                              src={this.state.tableData.ImageURL}
-                              height="75px"
-                              alt="image"
-                            ></img>
+                            {this.state.tableData &&
+                            this.state.tableData.ExternalImageId ? (
+                              this.state.tableData.ExternalImageId.map(
+                                (data, index) => {
+                                  return (
+                                    <div key={index}>
+                                      <img
+                                      src={data}
+                                      height="75px"
+                                      alt="image"
+                                      
+                                    ></img>
+                                    </div>
+                                    
+                                  );
+                                }
+                              )
+                            ) : (
+                              <span>No image available</span>
+                            )}
                           </td>
                         </tr>
                         <tr>
