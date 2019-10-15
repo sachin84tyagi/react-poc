@@ -2,17 +2,11 @@ import React, { Component } from "react";
 
 import { messaging } from "../../init-fcm";
 
-import Header from "../../shared/header/header";
-import Sidebar from "../../shared/sidebar/sidebar";
 import "./notificationData.scss";
-
-import SidebarCollpase from "../../shared/sidebar/sideBarCollapse";
 import FaceDetection from "../faceDetection/faceDetection";
 import WeaponDetection from "../weaponDetection/weaponDetection";
 
 import { Route, Redirect, Link } from "react-router-dom";
-
-import axios from "axios";
 
 class NotificationData extends Component {
   state = {
@@ -66,23 +60,18 @@ class NotificationData extends Component {
     super(props);
     const dataArr = [];
 
-    messaging.onMessage(async function (payload) {
+    messaging.onMessage(async function(payload) {
       const { data } = await payload;
-
       if (data.EventOn && data.EventOn != "") {
         const jsonArr = [];
         // console.log("Event On")
-        jsonArr.push(data)
+        jsonArr.push(data);
         localStorage.setItem("payload", JSON.stringify(jsonArr));
       } else {
         // console.log("Push Data")
         dataArr.push(data);
         localStorage.setItem("payload", JSON.stringify(dataArr));
       }
-
-
-
-
     });
   }
 
@@ -96,11 +85,10 @@ class NotificationData extends Component {
     const { messages } = this.state;
 
     return messages[0] && messages[0].EventOn == "S3Video" ? (
-
       <WeaponDetection messages={this.state.messages}></WeaponDetection>
     ) : (
-        <FaceDetection messages={this.state.messages}></FaceDetection>
-      );
+      <FaceDetection messages={this.state.messages}></FaceDetection>
+    );
   }
 }
 

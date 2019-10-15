@@ -17,7 +17,8 @@ class NotificationDetails extends Component {
     redirect: true,
     data: [],
     videoJsOptions: {},
-    tableData: {},
+    tableData: {
+    },
     showSideBar: true
   };
 
@@ -49,31 +50,33 @@ class NotificationDetails extends Component {
       }
     };
 
+    console.log("in the chjdjhdvhvjh", JSON.parse(this.props.match.params.image))
+
     const { data } = await axios.post(
       "https://vhlvztx86k.execute-api.us-east-1.amazonaws.com/prod/getvideostreambytimestamp",
       {
         streamName: "RekognitionStream",
         startTime: this.props.match.params.timeStamp,
         endTime: this.props.match.params.timeStamp,
-        imageName: this.props.match.params.image
+        imageName: JSON.parse(this.props.match.params.image)
       },
       axiosConfig
     );
     // const { data } = await axios.get("http://www.mocky.io/v2/5da41b1d2f000056008a0961")
-    console.log("Response from API ::: ", data.data);
-    if (data && data.data) {
+    // console.log("Response from API ::: ", data);
+    if (data) {
       const videoJsOptions = {
         autoplay: true,
         controls: false,
         sources: [
           {
-            src: data.data.VideoURL
+            src: data.videoUrl
           }
         ]
       };
 
       this.setState({ videoJsOptions });
-      this.setState({ tableData: data.data });
+      this.setState({ tableData: data });
     }
   }
 
@@ -88,7 +91,9 @@ class NotificationDetails extends Component {
     const data = null;
   }
   render() {
-    const { videoJsOptions } = this.state;
+    const { videoJsOptions, tableData } = this.state;
+    // console.log("in the dhfjjhgjhfghgk>>>>>>", tableData);
+    // console.log("in the efhhfdhdghfgf>>>>>>", videoJsOptions);
     return (
       <React.Fragment>
         <div className="car-management">
@@ -134,7 +139,17 @@ class NotificationDetails extends Component {
                             backgroundColor: "#000"
                           }}
                         >
-                          {/* <VideoPlayer {...videoJsOptions} /> */}
+                          <div
+                            style={this.styleDiv}
+                            className="video-container"
+                          >
+                            <VideoPlayer
+                              {...videoJsOptions}
+                              index="video-container"
+                              id="video-js"
+                            />
+                          </div>
+
                           <hr />
                         </div>
                       </div>
@@ -149,23 +164,18 @@ class NotificationDetails extends Component {
                             Image
                           </th>
                           <td>
-                            {this.state.tableData &&
-                            this.state.tableData.ExternalImageId ? (
-                              this.state.tableData.ExternalImageId.map(
-                                (data, index) => {
-                                  return (
-                                    <div key={index}>
-                                      <img
+                            {tableData && tableData.imageUrl ? (
+                              tableData.imageUrl.map((data, index) => {
+                                return (
+                                  <div key={index}>
+                                    <img
                                       src={data}
                                       height="75px"
                                       alt="image"
-                                      
                                     ></img>
-                                    </div>
-                                    
-                                  );
-                                }
-                              )
+                                  </div>
+                                );
+                              })
                             ) : (
                               <span>No image available</span>
                             )}
@@ -175,7 +185,7 @@ class NotificationDetails extends Component {
                           <th scope="row" className="table-entity">
                             Video URL
                           </th>
-                          <td>{this.state.tableData.VideoURL}</td>
+                          <td>{tableData.videoUrl}</td>
                         </tr>
                         <tr>
                           <th scope="row" className="table-entity">

@@ -111,7 +111,11 @@ class WeaponDetection extends Component {
                             backgroundColor: "#000"
                           }}
                         >
-                          <VideoPlayer {...videoJsOptions} />
+                          <VideoPlayer
+                            {...videoJsOptions}
+                            index="video-container"
+                            id="video-js"
+                          />
                           <hr />
                         </div>
                       </div>

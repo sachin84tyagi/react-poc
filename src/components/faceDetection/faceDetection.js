@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Header from "../../shared/header/header";
 import Sidebar from "../../shared/sidebar/sidebar";
@@ -21,13 +21,8 @@ class FaceDetection extends Component {
     });
   };
 
-  constructor(props) {
-    super(props);
-    // // console.log("in face detection component", this.props.messages);
-  }
 
   render() {
-    // console.log("in face detection render", this.props.messages);
     return (
       <React.Fragment>
         <div className="car-management">
@@ -82,7 +77,6 @@ class FaceDetection extends Component {
                               <td>{message.ExternalImageId}</td>
                               <td>{message.ServerTimestamp}</td>
                               <td>{message.StreamArn}</td>
-                              {/* <td>{`/notificationDetails/${message.ExternalImageId}/${message.ServerTimestamp}`}</td> */}
                               <td>
                                 <Link
                                   className="btn btn-warning btn-sm"

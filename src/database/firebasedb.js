@@ -9,7 +9,8 @@ const config = {
   databaseURL: 'https://e-project-4e023.firebaseio.com',
   projectId: 'e-project-4e023',
   storageBucket: 'gs://e-project-4e023.appspot.com/',
-  messagingSenderId: '994953111174'
+  // messagingSenderId: '994953111174'
+  messagingSenderId: '384036126880'
   /* apiKey: 'AIzaSyBgp2Vt0nRUdgm5ad_kQGmg5G_B8QIkjoM',
   authDomain: 'e-project-80550.firebaseapp.com',
   databaseURL: 'https://e-project-80550.firebaseio.com',

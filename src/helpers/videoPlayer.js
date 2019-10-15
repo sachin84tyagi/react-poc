@@ -6,7 +6,7 @@ import "video.js/dist/video-js.css";
 class VideoPlayer extends Component {
   
   componentDidMount() {
-    // console.log("in the videoplayer componentDidMount", this.props)
+    console.log("in the videoplayer componentDidMount", this.props)
 
     if (this.player) {
       this.player.dispose();
@@ -19,6 +19,22 @@ class VideoPlayer extends Component {
     this.player = videojs(
       document.getElementById(this.props.id),
       this.props,
+      function onPlayerReady() {}
+    );
+  }
+
+  componentWillReceiveProps(previousProps, nextProps) {
+    if (this.player) {
+      this.player.dispose();
+    }
+
+    let querySelectorElement = "div." + previousProps.index;
+    document.querySelector(querySelectorElement).innerHTML = this.videoHTML(
+      previousProps.id
+    );
+    this.player = videojs(
+      document.getElementById(previousProps.id),
+      previousProps,
       function onPlayerReady() {}
     );
   }
