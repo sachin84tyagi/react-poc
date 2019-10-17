@@ -77,9 +77,9 @@ span {
 
 #sidebarAtCollapse ul li {
   justify-content: center;
-    display: flex;
-    height: 40px;
-    border-bottom: 1px solid #000000;
+  display: flex;
+  height: 40px;
+  border-bottom: 1px solid #000000;
 }
 
 #sidebarAtCollapse ul li a {
@@ -88,7 +88,7 @@ span {
 
 #sidebarAtCollapse ul li a i {
   font-size: 24px;
-    color: white;
+  color: white;
 }
 
 #sidebar.active {
@@ -285,4 +285,16 @@ a.article:hover {
   #sidebarAtCollapse span {
     display: none;
   }
+}
+
+.link-reference {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 13px;
+  display: block;
+  background-color: transparent;
+}
+
+.fas {
+  margin-right: 10px !important;
 }

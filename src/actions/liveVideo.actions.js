@@ -14,7 +14,6 @@ function getVideoStream() {
       if(resp) {
         dispatch({ type: liveVideoStreamConstant.SUCCESS, resp });
         history.push("/dashboard")
-
       }
     });
   };

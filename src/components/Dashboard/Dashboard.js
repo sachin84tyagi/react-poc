@@ -63,7 +63,7 @@ class Dashboard extends Component {
         data.map((res, index) => {
           videoJsOptionsName[index] = {
             autoplay: true,
-            controls: false,
+            controls: true,
             sources: [
               {
                 src: data[index].streamUrl,
@@ -71,11 +71,13 @@ class Dashboard extends Component {
               }
             ],
             index: "video-container" + index,
-            id: "video-js" + index
-          };
+            id: "video-js" + index,
+            camaraName:  res.stream
+            };
+
         });
 
-        // console.log("in dashboard response", videoJsOptionsName);
+        console.log("in dashboard response", videoJsOptionsName);
         this.setState({
           videoData: videoJsOptionsName
         });
@@ -87,7 +89,7 @@ class Dashboard extends Component {
 
   render() {
     const { videoData } = this.state;
-    console.log("in the render dashboard", videoData);
+    // console.log("in the render dashboard", videoData);
     var videoDatas = videoData.reduce(
       (rows, key, index) =>
         (index % 2 == 0 ? rows.push([key]) : rows[rows.length - 1].push(key)) &&
@@ -117,7 +119,7 @@ class Dashboard extends Component {
             <div
               className="social-box"
               style={{
-                paddingBottom: "200px",
+                paddingBottom: "15px",
                 paddingLeft: "18px",
                 paddingRight: "12px"
               }}
@@ -139,7 +141,7 @@ class Dashboard extends Component {
                 <div>
                   {videoDatas.map((data, index) => {
                     return (
-                      <div key = {index} className="row">
+                      <div key = {index} className="row video-rows">
                         {data.map((data, index) => {
                           return (
                             <div
@@ -149,31 +151,22 @@ class Dashboard extends Component {
                             >
                               <div
                                 className={`text-center cccc video-player`}
-                                key={index}
                               >
                                 <div
                                   style={{
                                     boxShadow: "0 0 5px #DAA520",
                                     backgroundColor: "#000"
                                   }}
-                                  key={index}
                                 >
+                                  <div className = "camara-name">{data.camaraName}</div>
                                   <div
                                     style={this.styleDiv}
-                                    key={index}
                                     className={data.index}
                                   >
                                     <VideoPlayer {...data} key={index} />
                                   </div>
+                                  
                                 </div>
-                                <div
-                                  style={{
-                                    color: "#d19b3d",
-                                    fontSize: "13px",
-                                    marginBottom: "40px",
-                                    marginTop: "20px"
-                                  }}
-                                ></div>
                               </div>
                             </div>
                           );
