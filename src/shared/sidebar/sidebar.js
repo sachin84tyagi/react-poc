@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { liveVideoStreamAction } from "../../actions/liveVideo.actions";
-import  { spinnerStatusAction } from  "../../actions/spinner.action"
+import { spinnerStatusAction } from "../../actions/spinner.action"
 
 import "./_sidebar.scss";
 
@@ -32,13 +32,19 @@ class Sidebar extends Component {
               </Link>
             </li>
             <li>
+              <Link to="/streamData">
+                <i className="fas fa-image"></i>
+                Stream Data
+          </Link>
+            </li>
+            <li>
               <span onClick={this.backToLiveStream} className="link-reference">
                 <i className="fas fa-image"></i>
                 Live Stream
               </span>
             </li>
             <li>
-              <Link onClick ={this.backToNotificationData} to="/notificationData">
+              <Link onClick={this.backToNotificationData} to="/notificationData">
                 <i className="fas fa-image"></i>
                 Notification Messages
               </Link>

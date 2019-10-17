@@ -9,13 +9,15 @@ import { PageNotFound } from "./shared/error/PageNotFound";
 
 import Logout from "./components/logout/logoutPage";
 
-import {Dashboard} from "./components/Dashboard/Dashboard";
+import { Dashboard } from "./components/Dashboard/Dashboard";
 import SignUp from "./components/signUp/signUp"
 
 import NotificationData from "./components/notificationData/notificationData";
 import NotificationDetails from "./components/notificationDetails/notificationDetails";
 
 import Message from "./components/messages/messages";
+import StreamData from "./components/streamData/streamData"
+
 
 const Router = props => (
   <React.Fragment>
@@ -30,10 +32,11 @@ const Router = props => (
       />
       {/* <Route exact path="/notificationDetails" component={NotificationDetails} /> */}
       <Route exact path="/message" component={Message} />
-      <Route exact path = "/signUp" component = {SignUp} />
+      <Route exact path="/signUp" component={SignUp} />
 
       <PrivateRoute exact path="/logoutPage" component={Logout} />
       <PrivateRoute exact path="/dashboard" component={Dashboard} />
+      <PrivateRoute exact path="/streamData" component={StreamData} />
       <Route component={PageNotFound} />
     </Switch>
   </React.Fragment>
