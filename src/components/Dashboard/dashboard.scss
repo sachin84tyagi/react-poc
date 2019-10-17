@@ -10,7 +10,7 @@
     line-height: normal;
     letter-spacing: normal;
     color: #d19b3d;
-    padding: 16px 0 28px;
+    padding: 16px 0 10px;
   }
 
   .user-list-table-container {
@@ -63,6 +63,8 @@
 .video-player {
   // margin: 5% 25%;
   padding: 0 10px;
+  width: 100%;
+    height: 100%;
 }
 
 .btn-bg {
@@ -81,6 +83,25 @@
 }
 
 .video-container .video-js-dimensions {
-  width: none !important;
-  height: none !important;
+  width: auto !important;
+  height: auto !important;
 }
+
+.vjs-loading-spinner {
+  &::after {
+    display: none;
+  }
+ }
+
+ .vjs-control-text {
+  display: none;
+ }
+
+ .video-rows {
+   margin-top: 3%;
+ }
+
+ .camara-name {
+   color: #e0a800;
+   background: #232838;
+ }

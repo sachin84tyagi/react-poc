@@ -67,7 +67,7 @@ class NotificationDetails extends Component {
     if (data) {
       const videoJsOptions = {
         autoplay: true,
-        controls: false,
+        controls: true,
         sources: [
           {
             src: data.videoUrl
@@ -132,7 +132,7 @@ class NotificationDetails extends Component {
                   <div className="car-list-header">
                     Messages Details
                     <div className="row mt-4">
-                      <div className={`col-lg-12 text-center`}>
+                      <div className={`col-lg-6 text-center`}>
                         <div
                           style={{
                             boxShadow: "0 0 5px #DAA520",

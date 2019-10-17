@@ -44,3 +44,9 @@ export const liveVideoStreamConstant = {
   SUCCESS: "LIVE_VIDEO_SUCCESS",
   ERROR: "LIVE_VIDEO_ERROR"
 }
+
+export const spinnerStatusConstant = {
+  spinnerStatus: true,
+  spinnerStatusFalse: false
+  
+}

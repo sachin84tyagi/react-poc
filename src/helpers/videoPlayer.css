@@ -1,3 +1,4 @@
+
 .video-container .video-js-dimensions {
   width: none !important;
   height: none !important;
@@ -5,21 +6,13 @@
 
 
 video {
-  width: 300px !important;
-  object-fit: cover !important;
+  width: 99% !important;
+    object-fit: cover !important;
+    height: 200px;
 }
-
-/* #video-js0 {
-  width: 300px;
-  height: 225px;
-}
-
-#video-js1 {
-  width: 300px;
-  height: 225px;
-} */
 
 .video-js {
-  width: 300px;
+  width: auto !important;
   height: 225px;
 }
+
