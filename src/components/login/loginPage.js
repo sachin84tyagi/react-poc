@@ -42,7 +42,8 @@ class LoginPage extends Component {
         this.loginForm.value.userName,
         this.loginForm.value.password
       );
-      console.log("loggendInStatus ::::::: >>>>>>>>>", loggendInStatus);
+
+      // console.log("loggendInStatus ::::::: >>>>>>>>>", this.props);
       // if (loggendInStatus === true) {
       //   this.props.history.push("/dashboard");
       // } else {
@@ -51,12 +52,17 @@ class LoginPage extends Component {
     }
   };
 
+  componentWillReceiveProps(props) {
+    console.log("in component recieve props", props)
+  }
+
   loginForm = FormBuilder.group({
     userName: ["", [Validators.required]],
     password: ["", [Validators.required, Validators.minLength(8)]]
   });
 
   render() {
+    console.log("in the login page", this.props)
     const loginStatus = Object.assign({}, this.props.userLoginStatus);
     return (
       <React.Fragment>

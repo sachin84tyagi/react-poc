@@ -1,20 +1,35 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-
+import { Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+
+import { Link } from "react-router-dom";
+import axios from "axios";
+
 import Header from "../../shared/header/header";
 import Sidebar from "../../shared/sidebar/sidebar";
+
 import SidebarCollpase from "../../shared/sidebar/sideBarCollapse";
 
-import "./_faceDetection.scss";
+import "./_streamDataList.scss";
 
-class FaceDetection extends Component {
+class StreamDataList extends Component {
   state = {
     redirect: true,
     messages: [],
     showSideBar: true,
+    open: false,
+    name: "",
+    mob: "",
+    email: "",
+    errors: "",
     messageDatas: [],
     spinnerStatus: false
+  };
+
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to="/message" />;
+    }
   };
 
   onClickFn = data => {
@@ -24,69 +39,68 @@ class FaceDetection extends Component {
     });
   };
 
-  // componentWillMount() {
-  //   console.log(
-  //     "in the face props",
-  //     this.props.spinnerStatusReducer.spinnerStatus
-  //   );
-  // }
+  async componentDidMount() {
+    const messages = await JSON.parse(localStorage.getItem("payload"));
+    // console.log("in the notification data", messages);
+    this.setState({ messages });
+  }
 
-  componentWillReceiveProps(props) {
-    // console.log(
-    //   "in the dwhghdjfjfjfj>>>",
-    //   props.spinnerStatusReducer.spinnerStatus
-    // );
-    if (props.spinnerStatusReducer.spinnerStatus) {
+  async componentWillMount() {
+    var messageData = [];
+    const resp = await axios.get(
+      "https://e50gckptya.execute-api.us-east-1.amazonaws.com/prod/",
+      {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
+    );
+    if (resp) {
       this.setState({
-        spinnerStatus: true
+        messagesData: resp.data
+      });
+      resp.data.map(message => {
+        // console.log("in face detection", JSON.stringify(message.externalImageId));
+        var d = new Date();
+        var date = new Date(
+          message.serverTimeStamp * 1000 + d.getTimezoneOffset() * 60000
+        );
+        var new_date =
+          date.getDate() +
+          "/" +
+          (date.getMonth() + 1) +
+          "/" +
+          date.getFullYear() +
+          " " +
+          date.getHours() +
+          ":" +
+          date.getMinutes();
+        var newObject = {
+          ExternalImageId: message.externalImageId,
+          ServerTimestamp: new_date,
+          ServerTimestampOriginal: message.serverTimeStamp,
+          ExternalImageIdUrl: JSON.stringify(message.externalImageId)
+        };
+        messageData.push(newObject);
+        // console.log("in face detection", newObject);
+        this.setState({
+          messageDatas: messageData
+        });
       });
     }
-    var messageData = [];
-    props.messages.map(message => {
-      // console.log("in face detection", JSON.parse(message.ExternalImageId)[0]);
-      var d = new Date();
-      var date = new Date(
-        message.ServerTimestamp * 1000 + d.getTimezoneOffset() * 60000
-      );
-      var new_date =
-        date.getDate() +
-        "/" +
-        (date.getMonth() + 1) +
-        "/" +
-        date.getFullYear() +
-        " " +
-        date.getHours() +
-        ":" +
-        date.getMinutes();
-      var newObject = {
-        ExternalImageId: JSON.parse(message.ExternalImageId),
-        ServerTimestamp: new_date,
-        StreamArn: message.StreamArn,
-        ExternalImageIdUrl: message.ExternalImageId,
-        ServerTimestampOriginal: message.ServerTimestamp
-      };
-      messageData.push(newObject);
-      // console.log("in face detection", newObject);
-      this.setState({
-        messageDatas: messageData
-      });
-    });
+
+    // console.log("in the streamDataList", messageData);
   }
 
   render() {
-    // console.log("hwgdggfgjf", this.state.messageDatas);
-    var classNames = ""
-    if(!this.state.spinnerStatus) {
-      classNames = ""
-    } else {
-      classNames = "spinner-fade"
-    }
+    const { messageDatas } = this.state;
+
     return (
       <React.Fragment>
         <div className="car-management">
           <Header
             displaySideBar={true}
-            isAuthorized={true}
+            isAuthorized={this.state.isLogin}
             onClickFn={this.onClickFn}
           />
         </div>
@@ -99,7 +113,7 @@ class FaceDetection extends Component {
           ) : (
             <SidebarCollpase></SidebarCollpase>
           )}
-          <div id="content" className = {classNames} >
+          <div id="content">
             <div
               className="social-box"
               style={{
@@ -117,27 +131,28 @@ class FaceDetection extends Component {
                   }}
                 >
                   <div className="car-list-header col-md-12">
-                    Messages List
+                    Stream Data History
                     <table className="table table-dark table-striped">
                       <thead>
                         <tr>
                           <th scope="col">#</th>
                           <th scope="col">Image</th>
                           <th scope="col">TimeStamp</th>
-                          <th scope="col">Stream</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {this.state.messageDatas &&
-                        this.state.messageDatas.length > 0
-                          ? this.state.messageDatas.map((message, key) => (
+                        {messageDatas && messageDatas.length > 0
+                          ? messageDatas.map((message, key) => (
                               <tr key={key}>
                                 <th scope="row">{key + 1}</th>
-                                <td>{message.ExternalImageId.map((ms, index) => {
-                                 return <span key = {index}>&nbsp; {ms}</span>
-                                })}</td>
+                                <td>
+                                  {message.ExternalImageId.map((ms, index) => {
+                                    return (
+                                      <span key={index}> &nbsp; {ms}</span>
+                                    );
+                                  })}
+                                </td>
                                 <td>{message.ServerTimestamp}</td>
-                                <td>{message.StreamArn}</td>
                                 <td>
                                   <Link
                                     className="btn btn-warning btn-sm"
@@ -156,21 +171,21 @@ class FaceDetection extends Component {
               </div>
             </div>
           </div>
-          {this.state.spinnerStatus ? 
-        <span className = "spinner">Please Wait...</span> : ""}
         </div>
-        
       </React.Fragment>
     );
   }
 }
 
 function mapStateToProps(state) {
-  // console.log("in the sidebar", state)
-  return state;
+  return {
+    state
+  };
 }
 
-export default connect(
+const streamDataList = connect(
   mapStateToProps,
   null
-)(FaceDetection);
+)(withRouter(StreamDataList));
+
+export { StreamDataList };

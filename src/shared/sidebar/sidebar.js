@@ -42,6 +42,11 @@ class Sidebar extends Component {
                 <i className="fas fa-image"></i>
                 Live Stream
               </span>
+            </li><li>
+              <Link onClick={this.backToNotificationData} to="/streamDataList">
+                <i className="fas fa-image"></i>
+                Stream Data History
+              </Link>
             </li>
             <li>
               <Link onClick={this.backToNotificationData} to="/notificationData">

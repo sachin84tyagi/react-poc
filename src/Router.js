@@ -16,7 +16,8 @@ import NotificationData from "./components/notificationData/notificationData";
 import NotificationDetails from "./components/notificationDetails/notificationDetails";
 
 import Message from "./components/messages/messages";
-import StreamData from "./components/streamData/streamData"
+import StreamData from "./components/streamData/streamData";
+import {StreamDataList} from "./components/streamDataList/streamDataList"
 
 
 const Router = props => (
@@ -37,6 +38,7 @@ const Router = props => (
       <PrivateRoute exact path="/logoutPage" component={Logout} />
       <PrivateRoute exact path="/dashboard" component={Dashboard} />
       <PrivateRoute exact path="/streamData" component={StreamData} />
+      <PrivateRoute exact path="/streamDataList" component={StreamDataList} />
       <Route component={PageNotFound} />
     </Switch>
   </React.Fragment>
